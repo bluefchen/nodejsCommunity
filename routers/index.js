@@ -11,6 +11,9 @@ function send(res,flag, msg){
 	res.status(200).json({flag,msg})
 }
 
+/*
+ * 添加问题
+ */
 router.post('/addQuestion', (req,res)=>{
 	var signerID = req.cookies.signerID;
 	
@@ -35,7 +38,9 @@ router.post('/addQuestion', (req,res)=>{
 	})
 })
 
-
+/*
+ * 添加回答
+ */
 router.post('/addAnswer', (req, res)=>{
 	var questionID = req.cookies.questionID;
 	var signerID = req.cookies.signerID;
