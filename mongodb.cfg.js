@@ -35,6 +35,7 @@ var answerSchema = new Schema({
 	description: String,
 	createTime: Date,
 	createIP: String,
+	agree:[{type: Schema.Types.ObjectId}],
 	ownerID: {type: Schema.Types.ObjectId, ref:'users'},
 	questionID: {type: Schema.Types.ObjectId, ref:'questions'}
 })

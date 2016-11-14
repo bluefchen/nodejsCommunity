@@ -77,27 +77,82 @@ router.post('/login',(req,res)=>{
 			}
 		}
 	})
-	
+})	
+// router.post('/login',(req,res)=>{
 // 	直接验证用户名和密码是否都正确
-//	req.body.passwd = crypto.createHash('md5')
-//							.update(req.body.passwd)
-//							.digest('hex')
-//	User.find({name: req.body.name, passwd: req.body.passwd}, function(err, result){
-//		if(err){
-//			console.log(err);
-//			send(res,'fail','连接服务器异常')
-//		}else{
-//			if(result.length == 0){
-//				send(res,'fail', '用户名或密码错误');
-//			}else{
-//				res.cookie('signer',req.body.name);
-//				send(res,'success', '登录成功');
-//			}
-//		}
-//	})
+// 	req.body.passwd = crypto.createHash('md5')
+// 							.update(req.body.passwd)
+// 							.digest('hex')
+// 	User.find({name: req.body.name, passwd: req.body.passwd}, function(err, result){
+// 		if(err){
+// 			console.log(err);
+// 			send(res,'fail','连接服务器异常')
+// 		}else{
+// 			if(result.length == 0){
+// 				send(res,'fail', '用户名或密码错误');
+// 			}else{
+// 				res.cookie('signer',req.body.name);
+// 				send(res,'success', '登录成功');
+// 			}
+// 		}
+// 	})
+// })
 
+
+
+
+
+/*
+ * 对问题点赞
+ */
+router.post('/agree',(req,res)=>{
+	var aId=req.body.aId
+	var uId=req.body.uId		
+	Answer.find({_id:aId},function(err,result){
+		var arr1 = result[0].agree			
+		var u1 = arr1.some(function(ele,index,err){
+			return ele == uId
+		})
+		//已经点过赞了
+		if(u1){
+			res.json({flag:'success',message:'不能重复点赞！'})
+		}else{
+			Answer.update({'_id':aId},{'$addToSet':{'agree':uId}},function(err,r){
+				if(err){
+					console.log(err);
+				}else{
+					res.json({flag:'success',message:'点赞成功！'})
+				}
+		    })
+		}
+	})
 })
+/*
+ * 对问题取消点赞
+ */
+router.post('/disagree',(req,res)=>{
+	var aId=req.body.aId
+	var uId=req.body.uId	
+	Answer.find({_id:aId},function(err,result){
+		var arr1 = result[0].agree			
+		var u1 = arr1.some(function(ele,index,err){
+			return ele == uId
+		})
+		//已经点过赞了
+		if(u1){
+			Answer.update({'_id':aId},{'$pull':{'agree':uId}},function(err,r){
+				if(err){
+					console.log(err);
+				}else{
+					res.json({flag:'success',message:'取消点赞成功！'}) 
+				}
+			})
+		}else{
+			res.json({flag:'fail',message:'之前并未点赞'})
+		}
 
+	})
+})
 
 
 module.exports = router;

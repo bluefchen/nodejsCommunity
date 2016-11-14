@@ -24,13 +24,41 @@ $(function(){
 		})
 		
 		$('#list').delegate('.good','click',function(){
+			var $this = $(this);
+			var uId = $.cookie('signerID').slice(3,-1);
+			var aId = $(this).parents('li').attr('id')
+			var data={aId:aId,uId:uId}
 			if($(this).find('img').attr('src') == 'images/icons/+0.png'){
-				$(this).find('img').attr('src', 'images/icons/+1.png');
-				$(this).nextAll('.hehe').find('img').attr('src', 'images/icons/-0.png');
-				$(this).next().text( Number($(this).next().text())+1 );
+				$.post('/agree',data,function(data){
+					if(data.flag == 'success'){
+						var count = $this.next().text();
+						$this
+							.find('img')
+							.attr('src', 'images/icons/+1.png')
+							.end()
+							.next()
+							.text( Number(count)+1 );
+					}else{
+						console.log(data.message)
+					}
+				})
+			}else{
+				$.post('/disagree',data,function(data){
+					if(data.flag == 'success'){
+						var count = $this.next().text();
+						$this
+							.find('img')
+							.attr('src', 'images/icons/+0.png')
+							.end()
+							.next()
+							.text( Number(count)-1 );
+					}else{
+						console.log(data.message)
+					}
+				})
 			}
 		})
-	}else{	
+	}else{
 		$('#user').removeAttr('data-toggle').click(function(){
 			location.href = '/login';
 		})
