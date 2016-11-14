@@ -3,8 +3,8 @@ $(function(){
 	var signer = $.cookie('signer');
 	
 	if(signer){
-		var header = '<img src="images/headPic/'+signer+'.jpg" onerror="this.src=\'images/headPic/default.jpg\'">';
-		$('#user').empty().html(header+signer).show();
+		var header = '<img src="images/avatar/'+signer+'.jpg" onerror="this.src=\'images/avatar/default.jpg\'">';
+		$('#user').empty().html(header+'&nbsp;'+signer).show();
 		$('.dropdown-menu li:first-child').click(function(){
 			location.href = '/userInfo';
 		})
@@ -30,17 +30,7 @@ $(function(){
 				$(this).next().text( Number($(this).next().text())+1 );
 			}
 		})
-		
-		$('#list').delegate('.hehe','click',function(){
-			if($(this).find('img').attr('src') == 'images/icons/-0.png'){
-				$(this).find('img').attr('src', 'images/icons/-1.png');
-				$(this).prevAll('.good').find('img').attr('src','images/icons/+0.png');
-				$(this).prev().text( Number($(this).prev().text())-1 );
-			}
-		})
-	}else{
-//		$('.dropdown-menu').hide();
-		
+	}else{	
 		$('#user').removeAttr('data-toggle').click(function(){
 			location.href = '/login';
 		})
@@ -56,8 +46,4 @@ $(function(){
 			$('.modal').modal('show');
 		})
 	}
-	
-
-
-	
 })

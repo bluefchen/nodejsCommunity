@@ -2,3 +2,8 @@
 
 # 忽略Node的模块文件夹
 /node_modules/
+
+# 忽略/www/images/headPic/文件夹及以下的所有头像
+/www/images/avatar/*
+# 不忽略默认的头像
+!/www/images/avatar/default.jpg

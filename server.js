@@ -34,7 +34,7 @@ app.use( require('./routers/map') )
 
 
 
-app.post('/addHeadPic', uploads.single('header') ,(req,res)=>{
+app.post('/addHeadPic', uploads.single('avatar') ,(req,res)=>{
 	res.status(200).json({flag: 'success', msg: '上传成功！'})
 })
 

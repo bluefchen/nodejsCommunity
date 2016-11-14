@@ -1,7 +1,7 @@
 $(function(){
 	var signer = $.cookie('signer');
 	if(signer){
-		var header = '<img src="../images/headPic/'+signer+'.jpg" onerror="this.src=\'../images/headPic/default.jpg\'">';
+		var header = '<img src="../images/avatar/'+signer+'.jpg" onerror="this.src=\'../images/avatar/default.jpg\'">';
 		$('#user').empty().html(header+'&nbsp;'+signer).show();
 		$('#goLogin').hide();
 		$('.dropdown-menu li:first-child').click(function(){
