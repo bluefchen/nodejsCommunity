@@ -3,6 +3,20 @@ $(function(){
 	var signer = $.cookie('signer');
 	
 	if(signer){
+		var uId = $.cookie('signerID').slice(3,-1);
+
+		// 点亮已点赞的图片
+		$('.agreeMes').each(function(i,ele){
+			var agreeArr = ele.innerHTML.split(',');
+			var has = agreeArr.some(function(ele,index,err){
+				return ele == uId;
+			})
+			if(has){
+				$(ele).next().find('img').attr('src', 'images/icons/+1.png');
+			}
+		})
+
+
 		var header = '<img src="images/avatar/'+signer+'.jpg" onerror="this.src=\'images/avatar/default.jpg\'">';
 		$('#user').empty().html(header+'&nbsp;'+signer).show();
 		$('.dropdown-menu li:first-child').click(function(){
@@ -25,7 +39,6 @@ $(function(){
 		
 		$('#list').delegate('.good','click',function(){
 			var $this = $(this);
-			var uId = $.cookie('signerID').slice(3,-1);
 			var aId = $(this).parents('li').attr('id')
 			var data={aId:aId,uId:uId}
 			if($(this).find('img').attr('src') == 'images/icons/+0.png'){
@@ -59,6 +72,7 @@ $(function(){
 			}
 		})
 	}else{
+		$('.agreeMes').remove();
 		$('#user').removeAttr('data-toggle').click(function(){
 			location.href = '/login';
 		})

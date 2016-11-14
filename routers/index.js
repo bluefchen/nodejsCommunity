@@ -49,6 +49,8 @@ router.post('/addAnswer', (req, res)=>{
 	req.body.questionID = questionID;
 	req.body.createTime = new Date();
 	req.body.createIP = req.ip;
+	
+	// 尖括号过滤，防止XSS
 	req.body.description = req.body.description.replace(/</g,'&lt;');
 	req.body.description = req.body.description.replace(/>/g,'&gt;');
 	
@@ -82,7 +84,9 @@ router.post('/addAnswer', (req, res)=>{
 })
 
 
-
+/*
+ * 首页
+ */
 router.get('/', (req,res)=>{
 
 	Question.find({},function(err,result){
@@ -91,7 +95,7 @@ router.get('/', (req,res)=>{
 			send(res,'fail','系统异常，请重试');
 		}else{
 			res.render('index', {title: '首页', questions: result});
-		}		
+		}
 	}).populate({
 		path: 'ownerID answerList',
 		// 多级 populate
