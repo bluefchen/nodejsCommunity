@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NodeJS问答社区</title>
+    <link type="text/css" rel="stylesheet" href="lib/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="css/global.css">
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+    <script src="js/angular-index.js"></script>
+    <script src="lib/jquery-3.1.0.min.js"></script>
+    <script src="layui/layui.js"></script>
+</head>
+<body ng-app="indexPage">
+    <header>
+        <div class="layui-header">
+            <div class="layui-main">
+                <a class="logo" href="/">NodeJS 问答社区</a>
+                <ul class="layui-nav">
+                    <li class="layui-nav-item layui-this">
+                        <a href="/">首页</a>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a href="/">问答</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="#" class="goLogin">登录</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>NodeJS 问答交流社区<small> 1.0</small></h1>
+                <p>嘿~小伙，欢迎来到这里，NodeJS 问答交流社区1.0助你变大牛！</p>
+            </div>
+        </div>
+    </header>
+    <main ng-controller="mainController">
+        <div class="container">
+            <div class="questionsBox shadow">
+                <blockquote class="layui-elem-quote question-item clearfix">
+                    <div class="answerNum unhasAnswer"><!-- TODO -->
+                        <p class="answer-count">0</p>
+                        <p>回答</p>
+                    </div>
+                    <div class="question-info">
+                        <div class="question-title">如何与外星人一起打LOL？</div>
+                        <div class="question-time clearfix">
+                            <div class="question-time1">2016-12-03</div>
+                            <div class="question-time2">2.5小时前</div>
+                        </div>
+                        <div class="question-topic">
+                            <span class="topic-item">javaScript</span>
+                            <span class="topic-item">node</span>
+                            <span class="topic-item">angular</span>
+                        </div>
+                    </div>
+                </blockquote>
+                <blockquote class="layui-elem-quote question-item clearfix"><!-- TODO -->
+                    <div class="answerNum hasAnswer">
+                        <p class="answer-count">15</p>
+                        <p>回答</p>
+                    </div>
+                    <div class="question-info">
+                        <div class="question-title">做为一个斗笔是种怎样的体验？</div>
+                        <div class="question-time clearfix">
+                            <div class="question-time1">2016-12-03</div>
+                            <div class="question-time2">3小时前</div>
+                        </div>
+                        <div class="question-topic">
+                            <span class="topic-item">javaScript</span>
+                            <span class="topic-item">ionic</span>
+                            <span class="topic-item">angular</span>
+                        </div>
+                    </div>
+                </blockquote>
+
+                <!-- 分页 -->
+                <div style="text-align: center">
+                    <div id="index-pageList"></div>
+                </div>
+                
+            </div>
+            <div class="main-right shadow">
+                <!--前往提问页面-->
+                <div class="goAsk">
+                    <p>今天，你编程遇到了什么问题呢？</p>
+                    <button type="button" class="layui-btn">提问</button>
+                </div>
+                <!--热门话题-->
+                <div class="panel panel-default hotTopic">
+                    <div class="panel-heading">热门话题</div>
+                    <div class="panel-body">
+                        <span class="topic-item">javaScript</span>
+                        <span class="topic-item">node</span>
+                        <span class="topic-item">angular</span>
+                        <span class="topic-item">ionic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+
+
+    <div id="form-login" ng-controller="form-login-controller">
+        <form class="layui-form" name="form-lgi">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名:</label>
+                <div class="layui-input-inline">
+                    <input name="username" type="text" placeholder="请输入用户名" autocomplete="off"
+                     required ng-pattern="/^[\u4e00-\u9fa5\w]{2,10}$/" 
+                     class="layui-input {{username.$dirty ? (username.$valid ? '' : 'unPass') : ''}}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码:</label>
+                <div class="layui-input-inline">
+                    <input name="password" type="password" class="layui-input" placeholder="请输入密码" autocomplete="off">
+                </div>
+            </div>
+            <div class="layui-form-item" style="text-align:center">
+                <button type="submit" class="layui-btn layui-btn-normal" ng-disabled="form-lgi.$valid">登录</button>
+            </div>
+        </form>
+    </div>
+    <div id="form-register" ng-controller="form-register-controller">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" required placeholder="请输入用户ID" autocomplete="off" class="layui-input username">
+                    <div class="layui-form-mid layui-word-aux">*用户名可以由汉字、数字、字母和下划线组成,长度在2~10位.</div>
+                    <div class="layui-form-mid layui-word-aux nameYz">*用户名已存在</div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="passwd" required placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <div class="layui-form-mid layui-word-aux">*密码必须6到12位，且不能出现空格.</div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">确认密码:</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="passwd2" required placeholder="重新输入密码" autocomplete="off" class="layui-input">
+                    <div class="layui-form-mid layui-word-aux">*密码必须6到12位，且不能出现空格.</div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">电子邮箱:</label>
+                <div class="layui-input-inline">
+                    <input type="email" name="email" required placeholder="请输入电子邮箱地址" autocomplete="off" class="layui-input">
+                    <div class="layui-form-mid layui-word-aux">*电子邮箱用于更改密码和找回密码.</div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别:</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="sex" value="2" title="保密" checked>
+                    <input type="radio" name="sex" value="1" title="男">
+                    <input type="radio" name="sex" value="0" title="女">
+                </div>
+            </div>
+            <div class="layui-form-item" style="text-align:center">
+                <button type="submit" class="layui-btn layui-btn-normal" ng-disabled="">立即注册</button>
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+
+    <!-- layui主入口模块配置 -->
+    <script>
+        layui
+            .config({
+                base: './js/'
+            })
+            .use('layui-index')
+    </script>
+</body>
+</html>
