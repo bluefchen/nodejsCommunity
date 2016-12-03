@@ -1,5 +1,5 @@
 layui
-    .define(['layer', 'element', 'laypage', 'form', 'laydate', 'upload'], function(exports){
+    .use(['layer', 'element', 'laypage', 'form', 'laydate', 'upload'], function(exports){
 
         // 分页
         var laypage = layui.laypage;
@@ -83,6 +83,39 @@ layui
             });
         }
 
+        // 弹出发布问题窗
+        $('.goAsk button').click(function(){
+            openAskWindow()
+        })
+        function openAskWindow() {
+            var askWindow = layer.open({
+                type: 1,
+                id: 'layer-askWindow',
+                title: '发布一个问题',
+                area: ['690px', '380px'],
+                shade: 0,  //遮罩层的透明度
+                maxmin: true,
+                offset: [
+                    ($(window).height() - 420)/2,
+                    ($(window).width() - 690)/2
+                ],
+                anim: 2,
+                content: $('#form-ask'),
+                btn: ['关闭'],
+                yes: function(){ //第一个按钮的回调
+                    layer.close(askWindow);
+                },
+                cancel: function(){ //右上角叉叉的回调
+                    console.log('cancel...')
+                },
+
+                zIndex: layer.zIndex, //重点1
+                success: function (layero) {  //窗体弹出后的成功回调方法
+                    layer.setTop(layero); //重点2
+                }
+            })
+        }
+
 
         // 表单验证
         // #FF5722
@@ -111,6 +144,4 @@ layui
     //     })
     // })
 
-
-        exports('layui-index', {})
     })

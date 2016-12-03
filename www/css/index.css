@@ -1,14 +1,21 @@
 body {
     background: url(../images/bg.png) repeat;
 }
-
+.shadow {
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.46);
+    border-radius: 2px;
+}
 .clearfix::after{
     content: '';
     display: block;
     height: 0;
     clear: both;
 }
-
+legend {
+    width: auto;
+    border-bottom: none;
+}
 
 header .layui-header{
     height: 65px;
@@ -37,15 +44,12 @@ header .layui-header{
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
+    margin-bottom: 20px;
 }
 
 
 
-.shadow {
-    background-color: #f9f9f9;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.46);
-    border-radius: 2px;
-}
+
 .questionsBox {
     width: 70%;
     padding: 15px;
@@ -148,7 +152,7 @@ main .question-item {
 
 
 
-#form-login, #form-register {
+#form-login, #form-register, #form-ask {
     display: none;
 }
 #form-login form {
@@ -180,6 +184,16 @@ main .question-item {
 }
 #form-register button[type=submit] {
     width: 40%;
+    margin-bottom: 10px;
+}
+
+#form-ask form {
+    width: 650px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+#form-ask button[type=submit] {
+    width: 30%;
     margin-bottom: 10px;
 }
 
