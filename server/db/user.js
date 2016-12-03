@@ -38,6 +38,10 @@ const userSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     }],
+    blighters: [{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }],
     myQuestions: [{
         type: Schema.Types.ObjectId,
         ref: 'questions'
