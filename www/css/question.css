@@ -29,12 +29,18 @@ header .layui-header{
     font-size: 20px;
     color: #fff;
 }
+.logo:hover {
+    text-decoration: none;
+}
 .layui-nav {
     float: right
 }
 .layui-nav li {
-    margin: 0 10px;
+    margin: 0 5px;
 }
+.layui-nav li:hover a {
+    text-decoration: none;
+} 
 
 main {
     margin-top: 10px;
