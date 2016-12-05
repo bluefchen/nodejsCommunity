@@ -23,10 +23,10 @@
                         <a href="/">首页</a>
                     </li>
                     <li class="layui-nav-item ">
-                        <a href="/">问答</a>
+                        <a href="#" class="goAskBtn">问答</a>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="#" class="goLogin">登录</a>
+                        <a href="#" class="goLogin">登录 · 注册</a>
                     </li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@
         </div>
     </header>
     <main ng-controller="mainController">
-        <div class="container">
+        <div class="container clearfix">
             <div class="questionsBox shadow">
                 <blockquote class="layui-elem-quote question-item clearfix">
                     <div class="answerNum unhasAnswer"><!-- TODO -->
@@ -154,7 +154,7 @@
                 <div class="layui-input-inline">
                     <input type="text" name="username" required placeholder="请输入用户ID" autocomplete="off" class="layui-input username">
                     <div class="layui-form-mid layui-word-aux">*用户名可以由汉字、数字、字母和下划线组成,长度在2~10位.</div>
-                    <div class="layui-form-mid layui-word-aux nameYz">*用户名已存在</div>
+                    <!--<div class="layui-form-mid layui-word-aux nameYz">*用户名已存在</div>-->
                 </div>
             </div>
             <div class="layui-form-item">

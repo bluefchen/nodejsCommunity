@@ -35,3 +35,51 @@ header .layui-header{
 .layui-nav li {
     margin: 0 10px;
 }
+
+
+
+
+main .container{
+    margin-top: 10px;
+    min-height: 600px;
+    /*padding: 0 3%;*/
+}
+.layui-tab-title li {
+    padding: 0 20px;
+}
+.avatarBox {
+    float: left;
+    margin-right: 15px;
+}
+.avatarBox img {
+    width: 200px;
+    height: 200px;
+    border-radius: 3%;
+}
+.infoBox {
+    float: left;
+}
+.infoBox .signer-name {
+    font-size: 28px;
+    line-height: 28px;
+    letter-spacing: 2px;
+    line-height: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.updateInfo h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.updateInfo .layui-form-label {
+    width: 8%;
+}
+.updateInfo .layui-inline {
+    width: 30%;
+}
+.updateInfo button[type=submit] {
+    width: 8%;
+    margin-left: 8%;
+}

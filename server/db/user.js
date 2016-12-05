@@ -27,6 +27,7 @@ const userSchema = Schema({
         match: [/[012]/, '数据格式不正确']
     },
     createTime: Date,
+    birthday: Date,
     createIp: String,
     avatar: String,
     description: {

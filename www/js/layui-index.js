@@ -9,11 +9,10 @@ layui
             groups: 7   //连续显示分页数
         });
 
+        // 弹出登录窗
         $('.goLogin').click(function(){
             openLoginWindow()
         })
-
-        // 弹出登录窗
         function openLoginWindow() {
             var loginWindow = layer.open({
                 type: 1, //页面弹窗
@@ -41,41 +40,37 @@ layui
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-
                 zIndex: layer.zIndex, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
                 }
             });
         }
+
         // 弹出注册窗
         function openRegisterWindow() {
             var registerWindow = layer.open({
                 type: 1, //页面弹窗
                 id: 'layer-registerWindow',
                 title: '注册',
-                area: ['590px', '600px'],
+                area: ['590px', '620px'],
                 shade: 0,  //遮罩层的透明度
                 maxmin: true,
                 offset: [
-                    ($(window).height() - 600)/2,
+                    ($(window).height() - 660)/2,
                     ($(window).width() - 590)/2
                 ],
                 anim: 4,
                 content: $('#form-register'),
-                btn: ['立即注册', '关闭'],
+                btn: ['关闭'],
                 yes: function(){ //第一个按钮的回调
                     console.log('正在注册...')
                     console.log('注册成功')
-                },
-                btn2: function(){  //第二个按钮的回调
                     layer.close(registerWindow);
-                    console.log('btn2...');
                 },
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-
                 zIndex: layer.zIndex, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
@@ -85,6 +80,9 @@ layui
 
         // 弹出发布问题窗
         $('.goAsk button').click(function(){
+            openAskWindow()
+        })
+        $('.goAskBtn').click(function(){
             openAskWindow()
         })
         function openAskWindow() {
@@ -108,7 +106,6 @@ layui
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-
                 zIndex: layer.zIndex, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
