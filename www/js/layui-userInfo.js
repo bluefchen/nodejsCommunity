@@ -15,15 +15,32 @@ layui
             start: laydate.now(),  //开始日期
             fixed: false, //是否固定在可视区域
             zIndex: 999, //css z-index
-            choose: function (dates) { //选择好日期的回调
+            choose: function (dates) { //选择好日期后的回调
 
             }
         }
-
         document.getElementById('input-birthday').onclick = function(){
             // laydate 中的 elem 只支持绑定DOM对象
             birthdayConfig.elem = this;
             laydate(birthdayConfig)
         }
 
+
+
+
+
+        // 更换头像按钮
+        $('.avatarBox')
+            .hover(function(){
+                $(this).find('.updateAvatar').stop().animate({'bottom':'0'},300)
+            },function(){
+                $(this).find('.updateAvatar').stop().animate({'bottom':'-50px'},300)
+            })
+            .find('.updateAvatar')
+            .click(function(){
+                console.log('更换头像按钮被点击了...')
+            })
+
+
+        
     })
