@@ -6,14 +6,14 @@
     <link type="text/css" rel="stylesheet" href="lib/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="css/index.css">
-    <script src="lib/angular.js"></script>
-    <!--<script src="lib/angular-ui-router.js"></script>-->
-    <script src="js/angular-index.js"></script>
     <script src="lib/jquery-3.1.0.min.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-messages.js"></script>
     <script src="layui/layui.js"></script>
+    <script src="js/angular-index.js"></script>
     <script src="js/layui-index.js"></script>
 </head>
-<body ng-app="indexPage">
+<body ng-app="indexPage" ng-controller="rootController">
     <header>
         <div class="layui-header">
             <div class="layui-main">
@@ -133,8 +133,8 @@
         </form>
     </div>
 
-    <div id="form-login">
-        <form class="layui-form" name="lgi" novalidate>
+    <div id="form-login" ng-controller="form-login-controller">
+        <form class="layui-form" name="lgi" ng-model="lgi" novalidate>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名:</label>
                 <div class="layui-input-inline">
@@ -153,20 +153,21 @@
                 </div>
             </div>
             <div class="layui-form-item" style="text-align:center">
-                <button type="submit" class="layui-btn {{lgi.$dirty ? (lgi.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">登录</button>
+                <button type="submit" ng-click="loginNow()"
+                    class="layui-btn {{lgi.$dirty ? (lgi.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">登录</button>
             </div>
         </form>
     </div>
-    <div id="form-register">
-        <form class="layui-form" name="join" novalidate>
+    <div id="form-register" ng-controller="form-register-controller" ng-init="canUse=true;">
+        <form class="layui-form" name="join" ng-model="join" novalidate>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名:</label>
                 <div class="layui-input-inline">
                     <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" 
                         required ng-pattern="/^[\u4e00-\u9fa5\w]{2,10}$/" ng-model="username" 
-                        class="layui-input {{join.username.$dirty ? (join.username.$valid ? '' : 'unPass') : ''}}">
+                        class="layui-input {{join.username.$dirty ? (join.username.$valid&&canUse ? '' : 'unPass') : ''}}">
                     <div class="layui-form-mid layui-word-aux">* 用户名可以由汉字、数字、字母和下划线组成,长度在2~10位</div>
-                    <div class="layui-form-mid layui-word-aux unPass nameYz" ng-if="false">*用户名已存在</div>
+                    <div class="layui-form-mid layui-word-aux unPass nameYz" ng-if="!canUse">*用户名已存在</div>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -200,29 +201,19 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">性别:</label>
                 <div class="layui-input-inline">
-                    <input type="radio" name="sex" value="2" title="保密" checked>
-                    <input type="radio" name="sex" value="1" title="男">
-                    <input type="radio" name="sex" value="0" title="女">
+                    <input type="radio" name="gender" value="2" title="保密" checked>
+                    <input type="radio" name="gender" value="1" title="男">
+                    <input type="radio" name="gender" value="0" title="女">
                 </div>
             </div>
             <div class="layui-form-item" style="text-align:center">
-                <button type="submit" class="layui-btn {{join.$dirty ? (join.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">立即注册</button>
+                <button type="submit" class="layui-btn {{join.$dirty ? (join.$valid&&canUse ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}" 
+                    ng-click="registerNow()" ng-disabled="join.$invalid || !canUse">立即注册</button>
             </div>
         </form>
 
     </div>
 
 
-
-
-
-    <!-- layui主入口模块配置 -->
-    <!--<script>
-        layui
-            .config({
-                base: './js/'
-            })
-            .use('layui-index')
-    </script>-->
 </body>
 </html>

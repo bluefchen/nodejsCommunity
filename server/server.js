@@ -3,40 +3,45 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 
-var cookieParser = require('cookie-parser');
+// var cookieParser = require('cookie-parser');
 
-var template = require('./template.cfg');
+// var template = require('./template.cfg');
 
-var multer = require('./multer.cfg');
-var uploads = multer.uploads;
+// var multer = require('./multer.cfg');
+// var uploads = multer.uploads;
 
-var mongooseModel = require('./mongodb.cfg')
-var User = mongooseModel.User
-var Question = mongooseModel.Question
-var Answer = mongooseModel.Answer
+// var mongooseModel = require('./mongodb.cfg')
+// var User = mongooseModel.User
+// var Question = mongooseModel.Question
+// var Answer = mongooseModel.Answer
 
 var app = express();
 
-app.use(express.static('www'));
+app.use(express.static('../www'));
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(cookieParser());
-app.engine('.html', template.__express);
-app.set('view engine', 'html');
+// app.use(bodyParser.json())
+// app.use(cookieParser());
+// app.engine('.html', template.__express);
+// app.set('view engine', 'html');
 
 
 // 导入路由配置
-app.use( require('./routers/index') )
-app.use( require('./routers/user') )
-app.use( require('./routers/map') )
+// app.use( require('./routers/index') )
+// app.use( require('./routers/user') )
+// app.use( require('./routers/map') )
+app.use( require('./routers/user/register') );
+app.use( require('./routers/user/login') );
 
 
 
 
 
 
-app.post('/addHeadPic', uploads.single('avatar') ,(req,res)=>{
-	res.status(200).json({flag: 'success', msg: '上传成功！'})
-})
+
+
+// app.post('/addHeadPic', uploads.single('avatar') ,(req,res)=>{
+// 	res.status(200).json({flag: 'success', msg: '上传成功！'})
+// })
 
 
 

@@ -6,7 +6,7 @@ const topicSchema = new Schema({
     designation: String
 })
 
-Topic.Model = mongoose.model('topics', questionSchema)
+Topic.Model = mongoose.model('topics', topicSchema)
 
 Topic.Model.on('index', (err)=>{
     if(err){

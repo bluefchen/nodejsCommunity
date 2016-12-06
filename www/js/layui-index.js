@@ -38,7 +38,8 @@ layui
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-                zIndex: layer.zIndex, //重点1
+                // zIndex: layer.zIndex, //重点1
+                zIndex: 10000, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
                 }
@@ -69,7 +70,8 @@ layui
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-                zIndex: layer.zIndex, //重点1
+                // zIndex: layer.zIndex, //重点1
+                zIndex: 10100, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
                 }
@@ -104,7 +106,8 @@ layui
                 cancel: function(){ //右上角叉叉的回调
                     console.log('cancel...')
                 },
-                zIndex: layer.zIndex, //重点1
+                // zIndex: layer.zIndex, //重点1
+                zIndex: 10200, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
                 }

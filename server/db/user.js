@@ -13,9 +13,9 @@ const userSchema = Schema({
     },
     password: {
         type: String,
-        required: [true, '密码不能为空！'],
-        minlength: [6, '密码至少为6位'],
-        maxlength: [16, '密码最多为16位']
+        required: [true, '密码不能为空！']
+        // minlength: [6, '密码至少为6位'],
+        // maxlength: [16, '密码最多为16位']
     },
     email: {
         type: String,
