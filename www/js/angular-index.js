@@ -7,13 +7,17 @@ angular
         
         $rootScope.signerID = $.cookie('signerID');
         $rootScope.signerAvatar = $.cookie('signerAva');
-        // 用户退出
         $(function(){
+            // 用户退出
             $('.logout').click(function(){
-                console.log('adfgwaer')
                 $.removeCookie('signerID');
                 $.removeCookie('signerAvatar');
                 window.location.href = '/';
+            })
+
+            // 提交问题时选中话题
+            $('#form-ask .topic-item').click(function(){
+                $(this).addClass('selected').siblings().removeClass('selected')
             })
         })
 
@@ -56,9 +60,9 @@ angular
                 .then( function(result){
                     $rootScope.layer.close(loadMsg);
                     if(result.data.flag == 1){
-                        $rootScope.layer.msg('注册成功!',{zIndex:20000, time: 2000})
+                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 2000})
                     }else{
-                        $rootScope.layer.msg('注册失败!',{zIndex:20000, time: 1000})
+                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000})
                     }
                 } )
                 .catch( function(err){
@@ -81,9 +85,8 @@ angular
             $http(config)
                 .then( function(result){
                     $rootScope.layer.close(loadMsg);
-                    console.log(result.data)
                     if(result.data.flag == 1){
-                        $rootScope.layer.msg('登录成功!',{zIndex:20000, time: 1000}, function(){
+                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000}, function(){
                             window.location.href = '/';
                         })
                     }else{
@@ -93,6 +96,37 @@ angular
                 .catch( function(err){
                     $rootScope.layer.close(loadMsg);
                     $rootScope.layer.msg('登录失败，发生了个未知错误',{zIndex:20000, time: 1000})
+                    console.log(err)
+                } )
+        }
+    }])
+    .controller('form-ask-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+        $scope.askNow = function(){
+            var loadMsg = $rootScope.layer.load(2);
+            var data = angular.element('#form-ask form').serialize();
+            var topic = $('#form-ask .topic-item.selected').text()
+            data = data+'&topic='+topic
+            console.log(data)
+            var config = {
+                method: 'post',
+				url: '/question/add',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				data: data
+            }
+            $http(config)
+                .then( function(result){
+                    $rootScope.layer.close(loadMsg);
+                    if(result.data.flag == 1){
+                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000}, function(){
+                            window.location.href = '/';
+                        })
+                    }else{
+                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000})
+                    }
+                } )
+                .catch( function(err){
+                    $rootScope.layer.close(loadMsg);
+                    $rootScope.layer.msg('发布失败，发生了个未知错误',{zIndex:20000, time: 1000})
                     console.log(err)
                 } )
         }

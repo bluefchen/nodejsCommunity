@@ -27,11 +27,9 @@
                     </li>
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
-                        <!--<a href="userInfo.html" class="goUserInfo" ng-if="signerID"><img src="{{signerAvatar}}" class="avatar-s"></a>
-                        <a href="" class="logout" ng-if="signerID"><span>退出</span></a>-->
                         <div ng-if="signerID">
                             <a href="userInfo.html" class="goUserInfo"><img src="{{signerAvatar}}" class="avatar-s"></a>
-                            <a href="" class="logout"><span>退出</span></a>
+                            <a href="" class="logout">退出</a>
                         </div>
                     </li>
                     <li class="layui-nav-item">
@@ -42,7 +40,7 @@
         </div>
         <div class="jumbotron">
             <div class="container">
-                <h1>NodeJS 问答交流社区<small> 1.0</small></h1>
+                <h1>NodeJS 问答交流社区<small> 2.0</small></h1>
                 <p>嘿~小伙，欢迎来到这里，NodeJS 问答交流社区助你变大牛！</p>
             </div>
         </div>
@@ -114,10 +112,10 @@
     </main>
     <footer></footer>
 
-    <div id="form-ask">
-        <form class="layui-form" name="askForm" novalidate>
+    <div id="form-ask" ng-controller="form-ask-controller">
+        <form class="layui-form" name="askForm" ng-model="askForm" novalidate>
             <div class="layui-form-item">
-                <input type="text" name="title" placeholder="给你的问题起个简要的标题吧" autocomplete="off"  ng-model="title" required ng-maxlength="20"
+                <input type="text" name="title" placeholder="给你的问题起个简要的标题吧~" autocomplete="off"  ng-model="title" required ng-maxlength="20"
                     class="layui-input {{askForm.title.$dirty ? (askForm.title.$valid ? '' : 'unPass') : ''}}">
                  <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.title.$dirty && askForm.title.$invalid">问题的名字太长。。。</div>
             </div>
@@ -129,12 +127,13 @@
                 <span class="topic-item">ionic</span>
             </div>
             <div class="layui-form-item">
-                <textarea name="description" placeholder="描述一下你的问题" required ng-model="description" ng-maxlength="1024"
+                <textarea name="description" placeholder="有什么不懂的只管说！" required ng-model="description" ng-maxlength="1024"
                     class="layui-textarea {{askForm.description.$dirty ? (askForm.description.$valid ? '' : 'unPass') : ''}}"></textarea>
                 <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.description.$dirty && askForm.description.$invalid">长度已经达到1024了！真的不能再多了</div>
             </div>
             <div class="layui-form-item" style="text-align: center">
-                <button type="submit" class="layui-btn layui-btn-normal">发布</button>
+                <button type="submit" ng-disabled="askForm.$invalid" ng-click="askNow()"
+                    class="layui-btn {{askForm.$dirty ? (askForm.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}} ">发布</button>
             </div>
         </form>
     </div>
@@ -159,7 +158,7 @@
                 </div>
             </div>
             <div class="layui-form-item" style="text-align:center">
-                <button type="submit" ng-click="loginNow()"
+                <button type="submit" ng-disabled="lgi.$invalid" ng-click="loginNow()"
                     class="layui-btn {{lgi.$dirty ? (lgi.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">登录</button>
             </div>
         </form>

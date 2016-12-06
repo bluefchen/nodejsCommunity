@@ -20,7 +20,7 @@ const questionSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'answers'
     }],
-    topics: {
+    topic: {
         type: Schema.Types.ObjectId,
         ref: 'topics'
     },

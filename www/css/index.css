@@ -164,7 +164,11 @@ main .question-item {
     background-color: #46B8DA;
     color: #333;
 }
-
+#form-ask .topic-item.selected {
+    cursor: pointer;
+    background-color: #46B8DA;
+    color: #333;
+}
 
 .goAsk {
     padding: 7px 15px;
@@ -247,6 +251,13 @@ main .question-item {
     width: 30%;
     margin-bottom: 10px;
 }
+
+
+
+
+
+
+
 
 .unPass {
     border-color: #FF5722;

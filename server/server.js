@@ -3,7 +3,7 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 
-// var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 
 // var template = require('./template.cfg');
 
@@ -20,7 +20,7 @@ var app = express();
 app.use(express.static('../www'));
 app.use(bodyParser.urlencoded({extended: false}))
 // app.use(bodyParser.json())
-// app.use(cookieParser());
+app.use(cookieParser());
 // app.engine('.html', template.__express);
 // app.set('view engine', 'html');
 
@@ -31,6 +31,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // app.use( require('./routers/map') )
 app.use( require('./routers/user/register') );
 app.use( require('./routers/user/login') );
+app.use( require('./routers/question/question') );
 
 
 
