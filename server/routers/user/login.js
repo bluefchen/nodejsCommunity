@@ -16,6 +16,8 @@ router.post('/user/login', (req, res)=>{
             if(result.length == 0){
                 res.json({flag: 0, msg: '用户名不存在'})
             }else if(result[0].password == req.body.password){
+                res.cookie('signerID', result[0]._id);
+                res.cookie('signerAva', result[0].avatar);
                 res.json({flag: 1, msg: '登录成功'})
             }else{
                 res.json({flag: 0, msg: '密码错误'})

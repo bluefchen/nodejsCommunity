@@ -42,6 +42,36 @@ header .layui-header{
     text-decoration: none;
 } 
 
+
+.avatar-z {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+}
+.avatar-s {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+
+.goUserInfo:hover img {
+    border: 2px solid #28A54C;
+}
+.logout:hover{
+    color: orangered !important;
+}
+.layui-nav .layui-nav-item .goUserInfo {
+    display: inline-block;
+    margin-right: -18px;
+}
+.layui-nav .layui-nav-item .logout {
+    display: inline-block;
+    margin-left: -18px;
+}
+
+
 .jumbotron {
     margin-top: 5px;
     margin-bottom: 10px;

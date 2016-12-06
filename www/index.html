@@ -7,8 +7,8 @@
     <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="css/index.css">
     <script src="lib/jquery-3.1.0.min.js"></script>
+    <script src="lib/jquery.cookie.js"></script>
     <script src="lib/angular.js"></script>
-    <script src="lib/angular-messages.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/angular-index.js"></script>
     <script src="js/layui-index.js"></script>
@@ -16,7 +16,7 @@
 <body ng-app="indexPage" ng-controller="rootController">
     <header>
         <div class="layui-header">
-            <div class="layui-main">
+            <div class="container">
                 <a class="logo" href="/">NodeJS 问答社区</a>
                 <ul class="layui-nav">
                     <li class="layui-nav-item layui-this">
@@ -26,7 +26,13 @@
                         <a href="#" class="goAskBtn">问答</a>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="#" class="goLogin">登录 · 注册</a>
+                        <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
+                        <!--<a href="userInfo.html" class="goUserInfo" ng-if="signerID"><img src="{{signerAvatar}}" class="avatar-s"></a>
+                        <a href="" class="logout" ng-if="signerID"><span>退出</span></a>-->
+                        <div ng-if="signerID">
+                            <a href="userInfo.html" class="goUserInfo"><img src="{{signerAvatar}}" class="avatar-s"></a>
+                            <a href="" class="logout"><span>退出</span></a>
+                        </div>
                     </li>
                     <li class="layui-nav-item">
                         <a href="#" class="">APP下载</a>

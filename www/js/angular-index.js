@@ -1,10 +1,22 @@
 angular
     .module('indexPage', [])
     .controller('rootController', ['$rootScope', function($rootScope){
-        layui
-            .use(['layer'], function(){
-                $rootScope.layer = layui.layer;
+        layui.use(['layer'], function(){
+            $rootScope.layer = layui.layer;
+        })
+        
+        $rootScope.signerID = $.cookie('signerID');
+        $rootScope.signerAvatar = $.cookie('signerAva');
+        // 用户退出
+        $(function(){
+            $('.logout').click(function(){
+                console.log('adfgwaer')
+                $.removeCookie('signerID');
+                $.removeCookie('signerAvatar');
+                window.location.href = '/';
             })
+        })
+
     }])
     .controller('form-register-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $('#form-register input[name=username]').blur(function(){
@@ -71,10 +83,9 @@ angular
                     $rootScope.layer.close(loadMsg);
                     console.log(result.data)
                     if(result.data.flag == 1){
-                        $rootScope.layer.msg('注册成功!',{zIndex:20000, time: 2000})
-                        setTimeout(function() {
-                            window.location.href = '/'
-                        }, 1500);
+                        $rootScope.layer.msg('登录成功!',{zIndex:20000, time: 1000}, function(){
+                            window.location.href = '/';
+                        })
                     }else{
                         $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000})
                     }
