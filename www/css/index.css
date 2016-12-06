@@ -164,7 +164,7 @@ main .question-item {
 #form-login form {
     width: 400px;
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 #form-login label {
     width: 25%;
@@ -172,9 +172,24 @@ main .question-item {
 #form-login .layui-input-inline {
     width: 60%;
 }
+#form-login .forgetPass {
+    position: absolute;
+    bottom: -23px;
+    right: 0;
+    font-size: 12px;
+    text-align: right;
+}
+#form-login .forgetPass a {
+    color: #999;
+    cursor: pointer;
+}
+#form-login .forgetPass a:hover {
+    color: #000;
+    text-decoration: none;
+}
 #form-login button[type=submit] {
     width: 60%;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 #form-register form {
@@ -205,4 +220,5 @@ main .question-item {
 
 .unPass {
     border-color: #FF5722;
+    color: orangered;
 }

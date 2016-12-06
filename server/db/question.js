@@ -14,7 +14,7 @@ const questionSchema = Schema({
     },
     description: {
         type: String,
-        maxlength: [1000, '问题描述不能超过1000个字符']
+        maxlength: [1024, '问题描述不能超过1000个字符']
     },
     answers: [{
         type: Schema.Types.ObjectId,

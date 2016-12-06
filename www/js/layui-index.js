@@ -29,8 +29,6 @@ layui
                 content: $('#form-login'),
                 btn: ['前往注册', '关闭'],
                 yes: function(){  //第一个按钮的回调
-                    console.log('正在登录...')
-                    console.log('登录成功')
                     openRegisterWindow();
                 },
                 btn2: function(){  //第二个按钮的回调

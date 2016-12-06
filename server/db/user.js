@@ -20,7 +20,7 @@ const userSchema = Schema({
     email: {
         type: String,
         required: [true, '邮箱地址不能为空'],
-        match: [/^([\w\.-]+)@([\w\.-]+)\.([a-zA-Z\.])$/, '邮箱格式不正确']
+        match: [/^([\w\.-]+)@([\w\.-]+)\.([a-zA-Z\.]+)$/, '邮箱格式不正确']
     },
     gender: {
         type: Number,

@@ -6,8 +6,8 @@
     <link type="text/css" rel="stylesheet" href="lib/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="css/index.css">
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-ui-router.js"></script>
+    <script src="lib/angular.js"></script>
+    <!--<script src="lib/angular-ui-router.js"></script>-->
     <script src="js/angular-index.js"></script>
     <script src="lib/jquery-3.1.0.min.js"></script>
     <script src="layui/layui.js"></script>
@@ -41,7 +41,7 @@
             </div>
         </div>
     </header>
-    <main ng-controller="mainController">
+    <main>
         <div class="container clearfix">
             <div class="questionsBox shadow">
                 <blockquote class="layui-elem-quote question-item clearfix">
@@ -109,19 +109,23 @@
     <footer></footer>
 
     <div id="form-ask">
-        <form class="layui-form">
+        <form class="layui-form" name="askForm" novalidate>
             <div class="layui-form-item">
-                <input type="text" name="title" placeholder="给你的问题起个简要的标题吧" autocomplete="off" class="layui-input" required>
+                <input type="text" name="title" placeholder="给你的问题起个简要的标题吧" autocomplete="off"  ng-model="title" required ng-maxlength="20"
+                    class="layui-input {{askForm.title.$dirty ? (askForm.title.$valid ? '' : 'unPass') : ''}}">
+                 <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.title.$dirty && askForm.title.$invalid">问题的名字太长。。。</div>
             </div>
             <div class="layui-form-item">
                 <span class="topic-item">layui</span>
                 <span class="topic-item">javaScript</span>
                 <span class="topic-item">node</span>
                 <span class="topic-item">angular</span>
-                <span class="topic-item">ionic</span>    
+                <span class="topic-item">ionic</span>
             </div>
             <div class="layui-form-item">
-                <textarea name="desc" placeholder="描述一下你的问题" class="layui-textarea" required></textarea>
+                <textarea name="description" placeholder="描述一下你的问题" required ng-model="description" ng-maxlength="1024"
+                    class="layui-textarea {{askForm.description.$dirty ? (askForm.description.$valid ? '' : 'unPass') : ''}}"></textarea>
+                <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.description.$dirty && askForm.description.$invalid">长度已经达到1024了！真的不能再多了</div>
             </div>
             <div class="layui-form-item" style="text-align: center">
                 <button type="submit" class="layui-btn layui-btn-normal">发布</button>
@@ -129,56 +133,68 @@
         </form>
     </div>
 
-    <div id="form-login" ng-controller="form-login-controller">
-        <form class="layui-form" name="form-lgi">
+    <div id="form-login">
+        <form class="layui-form" name="lgi" novalidate>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名:</label>
                 <div class="layui-input-inline">
                     <input name="username" type="text" placeholder="请输入用户名" autocomplete="off"
-                     required ng-pattern="/^[\u4e00-\u9fa5\w]{2,10}$/" 
-                     class="layui-input {{username.$dirty ? (username.$valid ? '' : 'unPass') : ''}}">
+                     required ng-pattern="/^[\u4e00-\u9fa5\w]{2,10}$/" ng-model="username"
+                     class="layui-input {{lgi.username.$dirty ? (lgi.username.$valid ? '' : 'unPass') : ''}}">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码:</label>
-                <div class="layui-input-inline">
-                    <input name="password" type="password" class="layui-input" placeholder="请输入密码" autocomplete="off">
+                <div class="layui-input-inline" style="position: relative;">
+                    <input name="password" type="password" placeholder="请输入密码" autocomplete="off" 
+                    required ng-pattern="/^[\w\S]{6,16}$/" ng-model="password"
+                    class="layui-input {{lgi.password.$dirty ? (lgi.password.$valid ? '' : 'unPass') : ''}}">
+                    <p class="forgetPass"><a href="#">忘记密码？</a></p>
                 </div>
             </div>
             <div class="layui-form-item" style="text-align:center">
-                <button type="submit" class="layui-btn layui-btn-normal" ng-disabled="form-lgi.$valid">登录</button>
+                <button type="submit" class="layui-btn {{lgi.$dirty ? (lgi.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">登录</button>
             </div>
         </form>
     </div>
-    <div id="form-register" ng-controller="form-register-controller">
-        <form class="layui-form">
+    <div id="form-register">
+        <form class="layui-form" name="join" novalidate>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="username" required placeholder="请输入用户ID" autocomplete="off" class="layui-input username">
-                    <div class="layui-form-mid layui-word-aux">*用户名可以由汉字、数字、字母和下划线组成,长度在2~10位.</div>
-                    <!--<div class="layui-form-mid layui-word-aux nameYz">*用户名已存在</div>-->
+                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" 
+                        required ng-pattern="/^[\u4e00-\u9fa5\w]{2,10}$/" ng-model="username" 
+                        class="layui-input {{join.username.$dirty ? (join.username.$valid ? '' : 'unPass') : ''}}">
+                    <div class="layui-form-mid layui-word-aux">* 用户名可以由汉字、数字、字母和下划线组成,长度在2~10位</div>
+                    <div class="layui-form-mid layui-word-aux unPass nameYz" ng-if="false">*用户名已存在</div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">密码:</label>
                 <div class="layui-input-inline">
-                    <input type="password" name="passwd" required placeholder="请输入密码" autocomplete="off" class="layui-input">
-                    <div class="layui-form-mid layui-word-aux">*密码必须6到12位，且不能出现空格.</div>
+                    <input type="password" name="passwd" required placeholder="请输入密码" autocomplete="off" 
+                        required ng-pattern="/^[\w\S]{6,16}$/" ng-model="passwd"
+                        class="layui-input {{join.passwd.$dirty ? (join.passwd.$valid ? '' : 'unPass') : ''}}">
+                    <div class="layui-form-mid layui-word-aux">* 密码支持数字、字母、下划线,长度为6~16位</div>
+                    <div class="layui-form-mid layui-word-aux unPass" ng-if="join.passwd.$dirty && join.passwd.$invalid">长度不够或出现非法字符(特殊符合、汉字、空格)</div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">确认密码:</label>
                 <div class="layui-input-inline">
-                    <input type="password" name="passwd2" required placeholder="重新输入密码" autocomplete="off" class="layui-input">
-                    <div class="layui-form-mid layui-word-aux">*密码必须6到12位，且不能出现空格.</div>
+                    <input type="password" name="passwd2" required placeholder="重新输入密码" autocomplete="off" ng-pattern="passwd"
+                        required ng-model="passwd2" class="layui-input {{join.passwd2.$dirty ? (passwd==passwd2 ? '' : 'unPass') : ''}}">
+                    <div class="layui-form-mid layui-word-aux unPass" ng-if="join.passwd2.$dirty && join.passwd2.$invalid">* 两次输入的密码不一致</div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">电子邮箱:</label>
                 <div class="layui-input-inline">
-                    <input type="email" name="email" required placeholder="请输入电子邮箱地址" autocomplete="off" class="layui-input">
-                    <div class="layui-form-mid layui-word-aux">*电子邮箱用于更改密码和找回密码.</div>
+                    <input type="email" name="email" required placeholder="请输入电子邮箱地址" autocomplete="off" 
+                        required ng-pattern="/^([\w\.-]+)@([\w\.-]+)\.([a-zA-Z\.]+)$/" ng-model="email"
+                        class="layui-input {{join.email.$dirty ? (join.email.$valid ? '' : 'unPass') : ''}}">
+                    <div class="layui-form-mid layui-word-aux">* 电子邮箱用于更改密码和找回密码&#x3000;&#x3000;&#x3000;&#x3000;</div>
+                    <div class="layui-form-mid layui-word-aux unPass" ng-if="join.email.$dirty && join.email.$invalid">电子邮箱格式不正确</div>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -190,7 +206,7 @@
                 </div>
             </div>
             <div class="layui-form-item" style="text-align:center">
-                <button type="submit" class="layui-btn layui-btn-normal" ng-disabled="">立即注册</button>
+                <button type="submit" class="layui-btn {{join.$dirty ? (join.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">立即注册</button>
             </div>
         </form>
 
