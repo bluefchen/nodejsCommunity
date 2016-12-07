@@ -19,3 +19,16 @@ const answerSchema = new Schema({
     createTime: Date,
     updateTime: Date,
 })
+
+
+Answer.Model = mongoose.model('answers', answerSchema)
+
+Answer.Model.on('index', (err)=>{
+    if(err){
+        console.error('集合 answers 索引错误！')
+    }else{
+        console.log('集合 answers 索引成功！')
+    }
+})
+
+module.exports = Answer

@@ -48,64 +48,25 @@
     <main>
         <div class="container clearfix">
             <div class="questionsBox shadow" ng-controller="questionsController">
-                <!--<blockquote class="layui-elem-quote question-item clearfix">
-                    <div class="answerNum unhasAnswer">
-                        <p class="answer-count">0</p>
-                        <p>回答</p>
-                    </div>
-                    <div class="question-info">
-                        <div class="question-title">如何与外星人一起打LOL？</div>
-                        <div class="question-time clearfix">
-                            <div class="question-time1">2016-12-03</div>
-                            <div class="question-time2">2.5小时前</div>
-                        </div>
-                        <div class="question-topic">
-                            <span class="topic-item">javaScript</span>
-                            <span class="topic-item">node</span>
-                            <span class="topic-item">angular</span>
-                        </div>
-                    </div>
-                </blockquote>-->
                 <blockquote class="layui-elem-quote question-item clearfix" ng-repeat="q in questions">
                     <div class="answerNum {{q.answers.length>0 ? 'hasAnswer' : 'unhasAnswer'}}">
                         <p class="answer-count">{{q.answers.length}}</p>
                         <p>回答</p>
                     </div>
                     <div class="question-info">
-                        <div class="question-title">{{q.title}}</div>
+                        <div class="question-title" ng-click="goLookQuestion(q._id)">{{q.title}}</div>
                         <div class="question-time clearfix">
                             <div class="question-time1">{{q.createTime | date:"yyyy-MM-dd HH:mm"}}</div>
                             <div class="question-time2">{{q.updateTime | timeSurplus}}</div>
                         </div>
-                        <div class="question-topic" ng-repeat="t in topics">
+                        <!--<div class="question-topic" ng-repeat="t in topics">
                             <span class="topic-item">{{t.description}}</span>
-                        </div>
+                        </div>-->
                     </div>
                 </blockquote>
-                <!--<blockquote class="layui-elem-quote question-item clearfix">
-                    <div class="answerNum hasAnswer">
-                        <p class="answer-count">15</p>
-                        <p>回答</p>
-                    </div>
-                    <div class="question-info">
-                        <div class="question-title">做为一个斗笔是种怎样的体验？</div>
-                        <div class="question-time clearfix">
-                            <div class="question-time1">2016-12-03</div>
-                            <div class="question-time2">3小时前</div>
-                        </div>
-                        <div class="question-topic">
-                            <span class="topic-item">javaScript</span>
-                            <span class="topic-item">ionic</span>
-                            <span class="topic-item">angular</span>
-                        </div>
-                    </div>
-                </blockquote>-->
 
                 <!-- 分页 -->
-                <div style="text-align: center">
-                    <div id="index-pageList"></div>
-                </div>
-                
+                <div id="index-pageList" ng-controller="pageListController"></div>
             </div>
             <div class="main-right shadow">
                 <!--前往提问页面-->

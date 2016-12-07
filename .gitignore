@@ -5,5 +5,7 @@
 
 # 忽略用户上传的头像
 /www/images/avatar/*
+/server/www/images/avatar/*
 # 不忽略默认的头像
 !/www/images/avatar/default.jpg
+!/server/www/images/avatar/default.jpg

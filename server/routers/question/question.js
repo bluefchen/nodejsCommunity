@@ -4,6 +4,36 @@ const db = require('../../db/mongodb.cfg');
 const router = express.Router();
 
 
+
+
+router.get('/q/:qid', (req, res)=>{
+    var qid = req.params.qid;
+    db.Question.Model
+        .find({_id: qid})
+        .populate({
+            path: 'owner answers topic',
+            populate: {path: 'answers'}
+        })
+        .exec()
+        .then((result)=>{
+            if(result.length == 0){
+                // TODO
+                // 这里将来要跳转到404页面
+                res.json({flag: 0, msg: '没有查询到该问题的内容'})
+            }else if(result.length == 1){
+                res.render('./q/question', {flag: 1, msg: '问题内容查询成功', result: result})
+            }else{
+                res.json({flag: 0, msg: '查询该问题的内容时发生异常'})
+            }
+        })
+})
+
+
+
+
+
+
+
 router.get('/question/all', (req, res)=>{
     db.Question.Model
         .find()

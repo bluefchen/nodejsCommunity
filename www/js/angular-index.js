@@ -1,8 +1,14 @@
 angular
     .module('indexPage', [])
     .controller('rootController', ['$rootScope', function($rootScope){
-        layui.use(['layer'], function(){
+        layui.use(['layer', 'laypage'], function(){
             $rootScope.layer = layui.layer;
+            $rootScope.laypage = layui.laypage;
+            $rootScope.laypage({
+                cont: 'index-pageList',  //将要进行呈现分页效果的div的id
+                pages: 100, //总页数
+                groups: 7   //连续显示分页数
+            });
         })
         
         $rootScope.signerID = $.cookie('signerID');
@@ -25,12 +31,16 @@ angular
     .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $http
             .get('/question/all')
-            .then( (result)=>{
+            .then( (result)=>{  
                 $scope.questions = result.data.result;
             } )
             .catch( (err)=>{
                 console.log(err)
             } )
+
+        $scope.goLookQuestion = function(q_id) {
+            window.location.href = '/q/'+q_id
+        }
     }])
     .filter('timeSurplus', function(){
         return function(value){
@@ -61,6 +71,9 @@ angular
             }
         }
     })
+    .controller('pageListController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+
+    }])
     .controller('form-register-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $('#form-register input[name=username]').blur(function(){
             if($(this).val()) $scope.checkName();
