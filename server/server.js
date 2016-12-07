@@ -10,10 +10,6 @@ var cookieParser = require('cookie-parser');
 // var multer = require('./multer.cfg');
 // var uploads = multer.uploads;
 
-// var mongooseModel = require('./mongodb.cfg')
-// var User = mongooseModel.User
-// var Question = mongooseModel.Question
-// var Answer = mongooseModel.Answer
 
 var app = express();
 
@@ -26,9 +22,6 @@ app.use(cookieParser());
 
 
 // 导入路由配置
-// app.use( require('./routers/index') )
-// app.use( require('./routers/user') )
-// app.use( require('./routers/map') )
 app.use( require('./routers/user/register') );
 app.use( require('./routers/user/login') );
 app.use( require('./routers/question/question') );

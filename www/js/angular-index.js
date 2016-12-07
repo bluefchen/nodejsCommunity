@@ -22,6 +22,45 @@ angular
         })
 
     }])
+    .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+        $http
+            .get('/question/all')
+            .then( (result)=>{
+                $scope.questions = result.data.result;
+            } )
+            .catch( (err)=>{
+                console.log(err)
+            } )
+    }])
+    .filter('timeSurplus', function(){
+        return function(value){
+            var now = new Date();
+            var value = new Date(value);
+            var surplus = now - value;  //时间差，毫秒数
+            var aMonth = 1000*60*60*24*31;
+            var aDay = 1000*60*60*24;
+            var aHour = 1000*60*60;
+            var aMinute = 1000*60;
+            var aSecond = 1000;
+            if( surplus/aMonth < 1 ){  // 小于31天
+                if( surplus/aDay < 1 ){  // 小于一天
+                    if( surplus/aHour < 1 ){  // 小于一个小时
+                        if( surplus/aMinute < 1){  // 小于一分钟
+                            return '刚刚'
+                        }else{
+                            return Number(surplus/aMinute).toFixed(0) + '分钟前'
+                        }
+                    }else {
+                        return Number(surplus/aHour).toFixed(0) + '小时前'
+                    }
+                }else{
+                    return Number(surplus/aDay).toFixed(0) + '天前'
+                }
+            }else{
+                return 'long ago'
+            }
+        }
+    })
     .controller('form-register-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $('#form-register input[name=username]').blur(function(){
             if($(this).val()) $scope.checkName();
