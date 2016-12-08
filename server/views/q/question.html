@@ -42,7 +42,7 @@
                 <div class="question-info">
                     <h2 data-qid="<%= q._id %>"><%= q.title %></h2>
                     <p class="topics"><span><%= q.topic.description %></span></p>
-                    <p><span><%= q.createTime %></span><span><%= q.answers.length %>个回答</span></p>
+                    <p><span>{{<%= new Date(q.createTime).getTime() %> | date: 'yyyy-MM-dd HH:mm:ss'}}</span><span>已有<%= q.answers.length %>个回答</span></p>
                 </div>
                 <div class="owner-info">
                     <a href="#"><img src="../images/avatar/<%= q.owner.avatar %>" alt="" class="avatar-m"></a>
@@ -62,7 +62,7 @@
                                 <div class="answer-content"><%= a.description %></div>
                                 <div class="clearfix">
                                     <div class="answer-info">
-                                        <p><%= a.createTime %></p>
+                                        <p>{{<%= new Date(a.createTime).getTime() %> | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
                                     </div>
                                     <div class="owner-info">
                                         <a href="#"><img src="../images/avatar/<%= a.owner.avatar%>" alt="" class="avatar-s"></a>
