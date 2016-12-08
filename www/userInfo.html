@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NodeJS问答社区</title>
+    <link type="text/css" rel="stylesheet" href="lib/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="css/userInfo.css">
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+    <script src="js/angular-index.js"></script>
+    <script src="lib/jquery-3.1.0.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="js/layui-userInfo.js"></script>
+</head>
+<body>
+    <header>
+        <div class="layui-header">
+            <div class="layui-main">
+                <a class="logo" href="index.html">NodeJS 问答社区</a>
+                <ul class="layui-nav">
+                    <li class="layui-nav-item">
+                        <a href="index.html">首页</a>
+                    </li>
+                    <li class="layui-nav-item layui-this">
+                        <a href="#" class="goLogin">个人信息</a>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a href="/">APP下载</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container shadow">
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">个人信息</li>
+                    <li>我的私信</li>
+                    <li>我的问题</li>
+                    <li>我的回答</li>
+                    <li>账户设置</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <!--个人信息-->
+                    <div class="layui-tab-item layui-show">
+                        <div class="showInfo clearfix">
+                            <div class="avatarBox">
+                                <img src="images/avatar/123.jpg" alt="">
+                                <div class="updateAvatar">更换头像</div>
+                            </div>
+                            <div class="infoBox">
+                                <h2 class="signer-name">人机小王子<i></i></h2>
+                                <p>注册于 <span>2016-12-5 10:22</span></p>
+                                <p>已提问<span>0</span>个问题&#x3000;已回答<span>0</span>个问题</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="updateInfo">
+                            <h3>完善我的信息：</h3>
+                            <form class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">性别</label>
+                                    <div class="layui-inline">
+                                        <input type="radio" name="gender" value="1" title="男" autocomplete="off">
+                                        <input type="radio" name="gender" value="0" title="女" autocomplete="off">
+                                        <input type="radio" name="gender" value="2" title="保密" checked autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item"> 
+                                    <label class="layui-form-label">自我描述</label>
+                                    <div class="layui-inline">
+                                        <textarea name="description" class="layui-textarea" placeholder="简单的描述一下自己吧" autocomplete="off" ></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">生日</label>
+                                    <div class="layui-inline">
+                                        <input name="birthday" id="input-birthday" class="layui-input" placeholder="输入你的生日" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <button type="submit" class="layui-btn layui-btn-normal" ng-disabled="">确定</button>
+                                </div>
+                            </form>
+                        </div>
+                        <hr>
+                    </div>
+                    <!--我的私信-->
+                    <div class="layui-tab-item">
+                        正在施工。。。
+                    </div>
+                    <!--我的问题-->
+                    <div class="layui-tab-item">
+                        正在施工。。。
+                    </div>
+                    <!--我的回答-->
+                    <div class="layui-tab-item">
+                        正在施工。。。
+                    </div>
+                    <!--账户设置-->
+                    <div class="layui-tab-item">
+                        正在施工。。。
+                    </div>
+                </div>
+            </div>
+            <div class="mainMenu">
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,4 +1,11 @@
 # 用于配置 Git 将要忽略的文件及文件夹
 
 # 忽略Node的模块文件夹
-/node_modules/
+/server/node_modules/
+
+# 忽略用户上传的头像
+/www/images/avatar/*
+/server/www/images/avatar/*
+# 不忽略默认的头像
+!/www/images/avatar/default.jpg
+!/server/www/images/avatar/default.jpg

@@ -2,7 +2,7 @@ $(function(){
 	var signer = $.cookie('signer');
 	if(signer){
 		$('#goLogin').hide();
-		var header = '<img src="../images/headPic/'+signer+'.jpg" onerror="this.src=\'../images/headPic/default.jpg\'">';
+		var header = '<img src="../images/avatar/'+signer+'.jpg" onerror="this.src=\'../images/avatar/default.jpg\'">';
 		$('#user').empty().html(header+'&nbsp;'+signer).show();
 		$('.dropdown-menu li:first-child').click(function(){
 			location.href = '/userInfo';

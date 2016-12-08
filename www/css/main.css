@@ -71,33 +71,54 @@ textarea {
 	color: #666;
 }
 .goAnswer {
+	padding-top: 10px;
+}
+.goAnswer span {
 	cursor: pointer;
 	color: #008000;
+	border: 1px dotted #008000;
+	padding: 3px 8px;
 }
-.goAnswer:hover {
-	background-color: #fff;
-}
+
 
 .media a img {
 	width: 60px;
 	height: 60px;
-	/*border-radius: 50%;*/
 }
 .media .media-left {
 	padding-right: 20px;
 }
 .media .media-left div {
-	/*width: 55px;*/
 	text-align: center;
-	/*margin-bottom: 10px;*/
-	/*background-color: #c9c9c9;*/
 }
 .media .media-left div img {
 	width: 30px;
 }
-.media .media-body .content{
-	/*background-color: #FCF8E3;*/
+
+
+
+
+
+/******************** 用户信息页 ********************/
+.updateAvatar label {
+	border: 1px solid #999;
 }
+.updateAvatar label .label-img {
+	width: 200px;
+	height: 200px;
+	background-image: url(../images/avatar/default.jpg);
+	background-repeat: no-repeat;
+	background-size: 200px;
+	text-align: center;
+	line-height: 200px;
+	color: white;
+	font-weight: 400;
+	letter-spacing: 3px;
+}
+.updateAvatar input[type=file] {
+	display: none;
+}
+
 
 
 

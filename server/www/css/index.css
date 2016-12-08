@@ -1,0 +1,269 @@
+body {
+    background: url(../images/bg.png) repeat;
+}
+.shadow {
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.46);
+    border-radius: 2px;
+}
+.clearfix::after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+legend {
+    width: auto;
+    border-bottom: none;
+}
+
+header .layui-header{
+    height: 65px;
+    border-bottom: 1px solid #404553;
+    background-color: #393D49;
+    color: #fff;
+}
+.logo {
+    float: left;
+    line-height: 65px;
+    font-size: 20px;
+    color: #fff;
+}
+.logo:hover {
+    text-decoration: none;
+}
+.layui-nav {
+    float: right
+}
+.layui-nav li {
+    margin: 0 5px;
+}
+.layui-nav li:hover a {
+    text-decoration: none;
+} 
+
+
+.avatar-z {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+}
+.avatar-s {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+
+.goUserInfo:hover img {
+    border: 2px solid #28A54C;
+}
+.logout:hover{
+    color: orangered !important;
+}
+.layui-nav .layui-nav-item .goUserInfo {
+    display: inline-block;
+    margin-right: -18px;
+}
+.layui-nav .layui-nav-item .logout {
+    display: inline-block;
+    margin-left: -18px;
+}
+
+
+.jumbotron {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.jumbotron h1 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+
+
+
+.questionsBox {
+    width: 70%;
+    padding: 15px;
+    min-height: 700px;
+    float: left;
+}
+#index-pageList {
+    text-align: center;
+}
+.main-right {
+    width: 27%;
+    padding: 15px;
+    min-height: 500px;
+    float: right;
+}
+
+
+
+main .question-item {
+    margin-bottom: 15px;
+}
+.answerNum {
+    float: left;
+    width: 50px;
+    padding: 5px 0;
+    text-align: center;
+    margin-right: 15px;
+}
+.hasAnswer {
+    background-color: #5297DC;
+    border-radius: 2px;
+}
+.unhasAnswer {
+    background-color: #EBCCCC;
+    border-radius: 2px;
+}
+.answerNum p:nth-child(1){
+    font-size: 18px;
+    line-height: 18px;
+}
+.answerNum p:nth-last-child(1){
+    font-size: 14px;
+    line-height: 14px;
+}
+.question-info {
+    float: left;
+}
+.question-title {
+    font-size: 18px;
+    line-height: 25px;
+}
+.question-title:hover {
+    text-decoration: underline;
+    color: #28A54C;
+    cursor: pointer;
+}
+.question-time1, .question-time2 {
+    float: left;
+    font-size: 14px;
+    color: #999;
+    margin-right: 15px;
+}
+.question-topic {
+    font-size: 0;
+    line-height: 0;
+    margin-bottom: -5px;
+}
+.topic-item {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 8px;
+    margin-right: 10px;
+    background-color: #C7DDEF;
+    color: #666;
+    border-radius: 3px;
+}
+.topic-item:hover {
+    cursor: pointer;
+    background-color: #46B8DA;
+    color: #333;
+}
+#form-ask .topic-item.selected {
+    cursor: pointer;
+    background-color: #46B8DA;
+    color: #333;
+}
+
+.goAsk {
+    padding: 7px 15px;
+    margin-bottom: 20px;
+    background-color: #DFF0D8;
+    border-radius: 2px;
+}
+.goAsk p {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+.goAsk button {
+    width: 100%;
+}
+
+.hotTopic {
+    margin-bottom: 20px;
+}
+
+
+
+
+
+#form-login, #form-register, #form-ask {
+    display: none;
+}
+#form-login form {
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+#form-login label {
+    width: 25%;
+}
+#form-login .layui-input-inline {
+    width: 60%;
+}
+#form-login .forgetPass {
+    position: absolute;
+    bottom: -23px;
+    right: 0;
+    font-size: 12px;
+    text-align: right;
+}
+#form-login .forgetPass a {
+    color: #999;
+    cursor: pointer;
+}
+#form-login .forgetPass a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#form-login button[type=submit] {
+    width: 60%;
+    margin-top: 15px;
+}
+
+#form-register form {
+    width: 550px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+#form-register .layui-form-label {
+    width: 20%;
+}
+#form-register .layui-input-inline {
+    width: 65%;
+}
+#form-register button[type=submit] {
+    width: 40%;
+    margin-bottom: 10px;
+}
+
+#form-ask form {
+    width: 650px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+#form-ask button[type=submit] {
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+.unPass {
+    border-color: #FF5722;
+    color: orangered;
+}

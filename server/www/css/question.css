@@ -1,0 +1,151 @@
+body {
+    background-color: #E5E9EF;
+    color: #595f69;
+    /*font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;*/
+}
+
+.shadow {
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.46);
+    border-radius: 2px;
+}
+
+.clearfix::after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+header .layui-header{
+    height: 65px;
+    border-bottom: 1px solid #404553;
+    background-color: #393D49;
+    color: #fff;
+}
+.logo {
+    float: left;
+    line-height: 65px;
+    font-size: 20px;
+    color: #fff;
+}
+.logo:hover {
+    text-decoration: none;
+}
+.layui-nav {
+    float: right
+}
+.layui-nav li {
+    margin: 0 5px;
+}
+.layui-nav li:hover a {
+    text-decoration: none;
+} 
+
+main {
+    margin-top: 10px;
+}
+main .container.shadow {
+    min-height: 800px;
+}
+
+fieldset {
+    background-color: #fff;
+}
+legend {
+    width: auto;
+    border-bottom: none;
+}
+fieldset .layui-field-box {
+    padding-top: 0;
+    margin-top: -5px;
+}
+
+
+.unPass {
+    border-color: #FF5722;
+    color: orangered;
+}
+
+
+.avatar-z {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+}
+.avatar-s {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.goUserInfo:hover img {
+    border: 2px solid #28A54C;
+}
+.logout:hover{
+    color: orangered !important;
+}
+.layui-nav .layui-nav-item .goUserInfo {
+    display: inline-block;
+    margin-right: -18px;
+}
+.layui-nav .layui-nav-item .logout {
+    display: inline-block;
+    margin-left: -18px;
+}
+
+
+.question-head, .question-body {
+    margin-bottom: 20px;
+}
+
+.question-info h2 {
+    font-size: 20px;
+    line-height: 26px;
+}
+.question-info p {
+    font-size: 14px;
+    color: #999;
+}
+.question-info span {
+    margin-right: 10px;
+}
+
+.question-body .layui-field-box {
+    font-size: 16px;
+    color: #333;
+}
+
+
+.answer-item .answer-content {
+    font-size: 16px;
+    color: #333;
+    border: 1px dashed #999;
+    padding: 10px 0; 
+    margin-bottom: 5px;
+}
+
+.answer-info {
+    float: left;
+    height: 30px;
+    padding-top: 16px;
+}
+.answer-info p {
+    font-size: 14px;
+    line-height: 14px;
+    color: #999;
+}
+.owner-info a {
+    font-size: 14px;
+    color: #999;
+}
+
+.answerList .owner-info {
+    float: right;
+}
+
+
+
+form[name=ans] .layui-form-mid {
+    margin-bottom: -13px;
+}
