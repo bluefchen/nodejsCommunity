@@ -36,6 +36,7 @@ app.use( require('./routers/user/info') );
 app.use( require('./routers/user/register') );
 app.use( require('./routers/user/login') );
 app.use( require('./routers/question/question') );
+app.use( require('./routers/answer/answer') );
 
 
 

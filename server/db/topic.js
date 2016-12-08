@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const Topic = {}
 
 const topicSchema = new Schema({
-    designation: String
+    description:String
 })
 
 Topic.Model = mongoose.model('topics', topicSchema)

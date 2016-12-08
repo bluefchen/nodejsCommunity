@@ -12,7 +12,7 @@ router.get('/q/:qid', (req, res)=>{
         .find({_id: qid})
         .populate({
             path: 'owner answers topic',
-            populate: {path: 'answers'}
+            populate: { path: 'owner' }  //级联查询answers下的owner
         })
         .exec()
         .then((result)=>{
@@ -21,7 +21,7 @@ router.get('/q/:qid', (req, res)=>{
                 // 这里将来要跳转到404页面
                 res.json({flag: 0, msg: '没有查询到该问题的内容'})
             }else if(result.length == 1){
-                res.render('./q/question', {flag: 1, msg: '问题内容查询成功', result: result})
+                res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result[0]})
             }else{
                 res.json({flag: 0, msg: '查询该问题的内容时发生异常'})
             }
@@ -73,7 +73,7 @@ router.post('/question/add', (req, res)=>{
         var question = new db.Question.Model({
             owner: req.cookies.signerID,
             title: req.body.title,
-            designation: req.body.designation,
+            description: req.body.description,
             topic: topic_id,
             answers: [],
             createTime: new Date(),

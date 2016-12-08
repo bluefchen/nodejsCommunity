@@ -7,11 +7,13 @@
     <link type="text/css" rel="stylesheet" href="../layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="../css/question.css">
     <script src="../lib/jquery-3.1.0.min.js"></script>
-    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/angular.js"></script>
+    <script src="../lib/angular-cookies.js"></script>
     <script src="../layui/layui.js"></script>
+    <script src="../js/angular-question.js"></script>
     <script src="../js/layui-question.js"></script>
 </head>
-<body>
+<body ng-app="indexPage" ng-controller="rootController">
     <header>
         <div class="layui-header">
             <div class="layui-main">
@@ -22,6 +24,10 @@
                     </li>
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
+                        <div ng-if="signerID">
+                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
+                            <a href="" class="logout" ng-click="logoutNow()">退出</a>
+                        </div>
                     </li>
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin">APP下载</a>
@@ -34,78 +40,56 @@
         <div class="container shadow">
             <div class="question-head">
                 <div class="question-info">
-                    <h2>问题的标题比如LayUI怎么和Angular结合使用？</h2>
-                    <p><span>2016-12-04</span><span>5个回答</span></p>
-                    <p><span>layui</span><span>Angular</span><span>javascript</span></p>
+                    <h2 data-qid="<%= q._id %>"><%= q.title %></h2>
+                    <p><span><%= q.createTime %></span><span><%= q.answers.length %>个回答</span></p>
+                    <p><span><%= q.topic.description %></span></p>
                 </div>
                 <div class="owner-info">
-                    <a href="#"><img src="../images/avatar/人机小王子.jpg" alt="" class="avatar-z"></a>
-                    <a href="#">人机小王子</a>
+                    <a href="#"><img src="../images/avatar/<%= q.owner.avatar %>" alt="" class="avatar-z"></a>
+                    <a href="#"><%= q.owner.username %></a>
                 </div>
             </div>
             <fieldset class="layui-elem-field question-body">
                 <legend>问题描述</legend>
-                <div class="layui-field-box">
-                    内容区域。这里是问题的描述。
-                </div>
+                <div class="layui-field-box"><%= q.description %></div>
             </fieldset>
             <div class="answerList">
-                <div class="answer-item">
-                    <div class="answer-content">
-                        这里是对于该问题的回答内容
-                    </div>
-                    <div class="">
-                        <div class="answer-info">
-                            <p>2016-12-03</p>
+                <fieldset class="layui-elem-field question-body">
+                    <legend>回答列表</legend>
+                    <% q.answers.forEach(function(a){ %>
+                        <div class="layui-field-box">
+                            <div class="answer-item">
+                                <div class="answer-content"><%= a.description %></div>
+                                <div class="clearfix">
+                                    <div class="answer-info">
+                                        <p><%= a.createTime %></p>
+                                    </div>
+                                    <div class="owner-info">
+                                        <a href="#"><img src="../images/avatar/<%= a.owner.avatar%>" alt="" class="avatar-s"></a>
+                                        <a href="#"><%= a.owner.username %></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
                         </div>
-                        <div class="ower-info">
-                            <a href="#"><img src="../images/avatar/老司机.jpg" alt="" class="avatar-s"></a>
-                            <a href="#">老司机</a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="answer-item">
-                    <div class="answer-content">
-                        这里是对于该问题的回答内容
-                    </div>
-                    <div class="">
-                        <div class="answer-info">
-                            <p>2016-12-03</p>
-                        </div>
-                        <div class="ower-info">
-                            <a href="#"><img src="../images/avatar/老司机.jpg" alt="" class="avatar-s"></a>
-                            <a href="#">老司机</a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="answer-item">
-                    <div class="answer-content">
-                        这里是对于该问题的回答内容
-                    </div>
-                    <div class="">
-                        <div class="answer-info">
-                            <p>2016-12-03</p>
-                        </div>
-                        <div class="ower-info">
-                            <a href="#"><img src="../images/avatar/老司机.jpg" alt="" class="avatar-s"></a>
-                            <a href="#">老司机</a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
+                    <% }); %>
+                </fieldset>
             </div>
             <!--我来回答区域-->
             <fieldset class="layui-elem-field question-body">
                 <legend>我来回答</legend>
-                <div class="layui-field-box">
-                    <form>
+                <div class="layui-field-box" ng-controller="answerController">
+                    <form name="ans" ng-model="ans" novalidate>
                         <div class="layui-form-item layui-form-text">
-                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            <textarea name="desc" placeholder="请输入内容" required ng-model="desc" ng-maxlength="10240"
+                                class="layui-textarea {{ans.desc.$dirty ? (ans.desc.$valid ? '' : 'unPass') : ''}}"></textarea>
+                            <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="!hasSigner">* 登录后才能回答哦~</div></div>
+                            <!--<div class="clearfix"><div class="layui-form-mid layui-word-aux unPass">* 怎么能提交个空的回答呢！</div></div>-->
+                            <!--<div class="clearfix"><div class="layui-form-mid layui-word-aux unPass">* 回答的内容太长了。。。</div></div>-->
                         </div>
                         <div class="layui-form-item">
-                            <button type="submit" class="layui-btn">提交回答</button>
+                            <button type="submit" ng-disabled="ans.$invalid"  ng-click="answerNow()"
+                                class="layui-btn {{ans.$dirty ? (ans.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">提交回答</button>
                         </div>
                     </form>
                 </div>

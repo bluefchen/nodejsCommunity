@@ -14,7 +14,7 @@
     <script src="js/layui-index.js"></script>
 </head>
 <body ng-app="indexPage" ng-controller="rootController">
-    <header ng-controller="headerController">
+    <header>
         <div class="layui-header">
             <div class="container">
                 <a class="logo" href="/">NodeJS 问答社区</a>
@@ -27,8 +27,8 @@
                     </li>
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
-                        <div ng-if="signerID">
-                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img src="{{signerAvatar}}" class="avatar-s"></a>
+                        <div ng-show="signerID">
+                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
                             <a href="" class="logout">退出</a>
                         </div>
                     </li>

@@ -56,7 +56,16 @@ legend {
     width: auto;
     border-bottom: none;
 }
+fieldset .layui-field-box {
+    padding-top: 0;
+    margin-top: -5px;
+}
 
+
+.unPass {
+    border-color: #FF5722;
+    color: orangered;
+}
 
 
 .avatar-z {
@@ -69,6 +78,22 @@ legend {
     height: 30px;
     border-radius: 50%;
 }
+
+.goUserInfo:hover img {
+    border: 2px solid #28A54C;
+}
+.logout:hover{
+    color: orangered !important;
+}
+.layui-nav .layui-nav-item .goUserInfo {
+    display: inline-block;
+    margin-right: -18px;
+}
+.layui-nav .layui-nav-item .logout {
+    display: inline-block;
+    margin-left: -18px;
+}
+
 
 .question-head, .question-body {
     margin-bottom: 20px;
@@ -92,19 +117,35 @@ legend {
 }
 
 
-.answer-item {
-    margin-bottom: 20px;
-}
 .answer-item .answer-content {
     font-size: 16px;
     color: #333;
+    border: 1px dashed #999;
+    padding: 10px 0; 
+    margin-bottom: 5px;
 }
 
+.answer-info {
+    float: left;
+    height: 30px;
+    padding-top: 16px;
+}
 .answer-info p {
     font-size: 14px;
+    line-height: 14px;
     color: #999;
 }
 .owner-info a {
     font-size: 14px;
     color: #999;
+}
+
+.answerList .owner-info {
+    float: right;
+}
+
+
+
+form[name=ans] .layui-form-mid {
+    margin-bottom: -13px;
 }

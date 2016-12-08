@@ -1,6 +1,6 @@
 angular
     .module('indexPage', [])
-    .controller('rootController', ['$rootScope', function($rootScope){
+    .controller('rootController', ['$rootScope','$scope', function($rootScope,$scope){
         layui.use(['layer', 'laypage'], function(){
             $rootScope.layer = layui.layer;
             $rootScope.laypage = layui.laypage;
@@ -11,8 +11,8 @@ angular
             });
         })
         
-        $rootScope.signerID = $.cookie('signerID').slice(2).replace(/\"/g,"");
-        $rootScope.signerAvatar = $.cookie('signerAva');
+        if($.cookie('signerID')) $rootScope.signerID = $.cookie('signerID').slice(2).replace(/\"/g,"");
+        $rootScope.signerAva = $.cookie('signerAva');
         $(function(){
             // 用户退出
             $('.logout').click(function(){
@@ -27,8 +27,6 @@ angular
             })
         })
 
-    }])
-    .controller('headerController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $scope.goLookUserInfo = function(){
             window.location.href = '/u/'+$.cookie('signerID').slice(3, -1);
         }

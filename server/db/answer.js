@@ -7,7 +7,10 @@ const answerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    description: String,
+    description: {
+        type: String,
+        maxlength: [10240, '问题描述不能超过1000个字符']
+    },
     answerFor: {
         type: Schema.Types.ObjectId,
         ref: 'questions'
