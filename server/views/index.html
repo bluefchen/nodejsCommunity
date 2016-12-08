@@ -97,20 +97,17 @@
                  <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.title.$dirty && askForm.title.$invalid">问题的名字太长。。。</div>
             </div>
             <div class="layui-form-item">
-                <span class="topic-item">layui</span>
-                <span class="topic-item">javaScript</span>
-                <span class="topic-item">node</span>
-                <span class="topic-item">angular</span>
-                <span class="topic-item">ionic</span>
+                <span class="topic-item" ng-repeat="t in topics">{{t.description}}</span>
             </div>
             <div class="layui-form-item">
                 <textarea name="description" placeholder="有什么不懂的只管说！" required ng-model="description" ng-maxlength="1024"
                     class="layui-textarea {{askForm.description.$dirty ? (askForm.description.$valid ? '' : 'unPass') : ''}}"></textarea>
-                <div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.description.$dirty && askForm.description.$invalid">长度已经达到1024了！真的不能再多了</div>
+                <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.description.$dirty && askForm.description.$invalid">长度已经达到1024了！真的不能再多了</div></div>
+                <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="!signerID">* 登录后才能回答哦~</div></div>
             </div>
             <div class="layui-form-item" style="text-align: center">
-                <button type="submit" ng-disabled="askForm.$invalid" ng-click="askNow()"
-                    class="layui-btn {{askForm.$dirty ? (askForm.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}} ">发布</button>
+                <button type="submit" ng-disabled="askForm.$invalid&&signerID" ng-click="askNow()"
+                    class="layui-btn {{askForm.$dirty ? (askForm.$valid&&signerID ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}} ">发布</button>
             </div>
         </form>
     </div>

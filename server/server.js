@@ -37,6 +37,7 @@ app.use( require('./routers/user/register') );
 app.use( require('./routers/user/login') );
 app.use( require('./routers/question/question') );
 app.use( require('./routers/answer/answer') );
+app.use( require('./routers/topic/topic') );
 
 
 

@@ -156,6 +156,15 @@ angular
         }
     }])
     .controller('form-ask-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+        $http
+            .get('/topic/all')
+            .then( (result)=>{
+                console.log(result.data)
+                $scope.topics = result.data.result;
+            } )
+            .catch( (err)=>{
+                console.log(err)
+            } )
         $scope.askNow = function(){
             var loadMsg = $rootScope.layer.load(2);
             var data = angular.element('#form-ask form').serialize();
