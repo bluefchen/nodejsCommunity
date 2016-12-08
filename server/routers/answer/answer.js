@@ -14,8 +14,6 @@ router.post('/answer/add', (req, res)=>{
     })
         .save()
         .then( (result)=>{
-            console.log('-----------------------------')
-            console.log(result)
             saveToQuestion(req.body.qid, result._id, req, res)
         } )
         .catch( (err)=>{
@@ -34,7 +32,6 @@ router.post('/answer/add', (req, res)=>{
                     var arr_ans = result[0].answers;
                     arr_ans.push(aid);
                     updateQuestion(qid, arr_ans, req, res);
-                    
                 }
             } )
             .catch( (err)=>{

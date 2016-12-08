@@ -3,7 +3,12 @@ const Schema = mongoose.Schema
 const Topic = {}
 
 const topicSchema = new Schema({
-    description:String
+    description: {
+        type: String,
+        unique: true,
+        required: [true, '话题名不能为空'],
+        maxlength: [10, '不能大于10个字符']
+    }
 })
 
 Topic.Model = mongoose.model('topics', topicSchema)

@@ -59,9 +59,9 @@
                             <div class="question-time1">{{q.createTime | date:"yyyy-MM-dd HH:mm"}}</div>
                             <div class="question-time2">{{q.updateTime | timeSurplus}}</div>
                         </div>
-                        <!--<div class="question-topic" ng-repeat="t in topics">
-                            <span class="topic-item">{{t.description}}</span>
-                        </div>-->
+                        <div class="question-topic">
+                            <span class="topic-item">{{q.topic.description}}</span>
+                        </div>
                     </div>
                 </blockquote>
 

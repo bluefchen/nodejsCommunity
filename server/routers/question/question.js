@@ -37,6 +37,9 @@ router.get('/q/:qid', (req, res)=>{
 router.get('/question/all', (req, res)=>{
     db.Question.Model
         .find()
+        .populate({
+            path: 'topic',
+        })
         .exec()
         .then( (result)=>{
             if(result.length == 0){

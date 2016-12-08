@@ -7,7 +7,6 @@ const encrypt = require('../../extensions/encrypt')
 
 
 router.post('/user/checkName', (req, res)=>{
-    console.log(req.body)
     db.User.Model
         .find({username: req.body.username})
         .exec()
@@ -24,7 +23,6 @@ router.post('/user/checkName', (req, res)=>{
 })
 
 router.post('/user/register', (req, res)=>{
-    console.log(req.body)
     var user = new db.User.Model({
         username: req.body.username,
         password: encrypt.useMD5(req.body.passwd),
@@ -33,7 +31,7 @@ router.post('/user/register', (req, res)=>{
         createTime: new Date(),
         birthday: new Date(),
         createIp: req.ip,
-        avatar: 'images/avatar/default.jpg'
+        avatar: 'default.jpg'
     })
         .save()
         .then( ()=>{

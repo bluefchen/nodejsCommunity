@@ -9,8 +9,8 @@ angular
         $rootScope.signerAva = $cookies.get('signerAva') ? $cookies.get('signerAva') : undefined;
         // 用户退出
         $scope.logoutNow = function(){
-            $cookies.remove('signerID');
-            $cookies.remove('signerAvatar');
+            $cookies.remove('signerID', {path:'/'});
+            $cookies.remove('signerAvatar', {path:'/'});
             window.location.href = '/';
         }
         // 跳转用户信息页
