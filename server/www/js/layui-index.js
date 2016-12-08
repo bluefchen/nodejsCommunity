@@ -110,6 +110,10 @@ layui
                 zIndex: 10200, //重点1
                 success: function (layero) {  //窗体弹出后的成功回调方法
                     layer.setTop(layero); //重点2
+                    // 提交问题时选中话题
+                    $('#form-ask .topic-item').click(function(){
+                        $(this).addClass('selected').siblings().removeClass('selected')
+                    })
                 }
             })
         }

@@ -1,6 +1,6 @@
 angular
-    .module('indexPage', [])
-    .controller('rootController', ['$rootScope','$scope', function($rootScope,$scope){
+    .module('indexPage', ['ngCookies'])
+    .controller('rootController', ['$rootScope','$scope', '$cookies', function($rootScope,$scope,$cookies){
         layui.use(['layer', 'laypage'], function(){
             $rootScope.layer = layui.layer;
             $rootScope.laypage = layui.laypage;
@@ -11,22 +11,16 @@ angular
             });
         })
         
-        if($.cookie('signerID')) $rootScope.signerID = $.cookie('signerID').slice(2).replace(/\"/g,"");
-        $rootScope.signerAva = $.cookie('signerAva');
-        $(function(){
-            // 用户退出
-            $('.logout').click(function(){
-                $.removeCookie('signerID');
-                $.removeCookie('signerAvatar');
-                window.location.href = '/';
-            })
-
-            // 提交问题时选中话题
-            $('#form-ask .topic-item').click(function(){
-                $(this).addClass('selected').siblings().removeClass('selected')
-            })
-        })
-
+        // 获取cookies
+        $rootScope.signerID = $cookies.get('signerID') ? $cookies.get('signerID').slice(3,-1) : undefined;
+        $rootScope.signerAva = $cookies.get('signerAva') ? $cookies.get('signerAva') : undefined;
+        // 用户退出
+        $scope.logoutNow = function(){
+            $cookies.remove('signerID', {path:'/'});
+            $cookies.remove('signerAvatar', {path:'/'});
+            window.location.href = '/';
+        }
+        // 跳转用户信息页
         $scope.goLookUserInfo = function(){
             window.location.href = '/u/'+$.cookie('signerID').slice(3, -1);
         }
