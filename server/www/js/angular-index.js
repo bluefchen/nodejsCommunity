@@ -22,7 +22,7 @@ angular
         }
         // 跳转用户信息页
         $scope.goLookUserInfo = function(){
-            window.location.href = '/u/'+$.cookie('signerID').slice(3, -1);
+            window.location.href = '/u/'+$rootScope.signerID;
         }
     }])
     .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){

@@ -65,7 +65,6 @@ main .container{
     border-radius: 3%;
 }
 .avatarBox .updateAvatar {
-    cursor: pointer;
     position: absolute;
     bottom: -50px;
     width: 100%;
@@ -77,8 +76,19 @@ main .container{
     opacity: 0.8;
     text-align: center;
     line-height: 50px;
+}
+.avatarBox .updateAvatar label {
+    display: block;
+    cursor: pointer;
     font-size: 16px;
+    font-weight: 400;
     letter-spacing: 2px;
+}
+.avatarBox #newAvatar {
+    /*display: none;*/
+}
+.avatarBox .layui-upload-button {
+    display: none !important;
 }
 .infoBox {
     float: left;

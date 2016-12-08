@@ -25,7 +25,7 @@
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
                         <div ng-if="signerID">
-                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
+                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img ng-src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
                             <a href="" class="logout" ng-click="logoutNow()">退出</a>
                         </div>
                     </li>

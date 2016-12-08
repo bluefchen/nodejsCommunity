@@ -1,7 +1,8 @@
 layui
-    .use(['layer', 'element', 'form', 'laydate'], function(){
+    .use(['layer', 'element', 'form', 'laydate', 'upload'], function(){
 
         var laydate = layui.laydate;
+        var upload = layui.upload;
 
         birthdayConfig = {
             event: 'click', //触发事件
@@ -41,6 +42,25 @@ layui
                 console.log('更换头像按钮被点击了...')
             })
 
-
+        // 头像上传
+        upload({
+            elem: $('#newAvatar'),
+            url: '/uInfo/changeAvatar',
+            method: 'post',
+            type: 'images',
+            before: function(input){
+                console.log('正在上传头像...')
+            },
+            success: function(res){
+                console.log(res)
+                if(res.flag == 1){
+                    console.log('头像上传成功')
+                    window.location.reload()
+                }else{
+                    console.log('头像上传失败')
+                    console.log(res.err)
+                }
+            }
+        })
         
     })

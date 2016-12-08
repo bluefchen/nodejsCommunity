@@ -8,7 +8,6 @@ router.get('/topic/all', (req,res)=>{
         .find()
         .exec()
         .then( (result)=>{
-            console.log(result.data)
             res.json({flag: 1, msg: '获取所有话题数据成功', result: result})
         } )
         .catch( (err)=>{

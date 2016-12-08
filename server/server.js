@@ -12,8 +12,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 
-// const multer = require('./multer.cfg');
-// const uploads = multer.uploads;
+
 
 
 // 使用 art-template 作为模板引擎
@@ -46,9 +45,6 @@ app.use( require('./routers/topic/topic') );
 
 
 
-// app.post('/addHeadPic', uploads.single('avatar') ,(req,res)=>{
-// 	res.status(200).json({flag: 'success', msg: '上传成功！'})
-// })
 
 
 

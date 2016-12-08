@@ -28,8 +28,8 @@
                     <li class="layui-nav-item">
                         <a href="#" class="goLogin" ng-if="!signerID">登录 · 注册</a>
                         <div ng-show="signerID">
-                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
-                            <a href="" class="logout">退出</a>
+                            <a href="" class="goUserInfo" ng-click="goLookUserInfo()"><img ng-src="../images/avatar/{{signerAva}}" class="avatar-s"></a>
+                            <a href="" class="logout" ng-click="logoutNow()">退出</a>
                         </div>
                     </li>
                     <li class="layui-nav-item">
@@ -40,7 +40,7 @@
         </div>
         <div class="jumbotron">
             <div class="container">
-                <h1>NodeJS 问答交流社区<small> 2.0</small></h1>
+                <h1>NodeJS 问答交流社区<small> 2.1</small></h1>
                 <p>嘿~小伙，欢迎来到这里，NodeJS 问答交流社区助你变大牛！</p>
             </div>
         </div>

@@ -8,10 +8,12 @@
     <link type="text/css" rel="stylesheet" href="../css/userInfo.css">
     <script src="../lib/jquery-3.1.0.min.js"></script>
     <script src="../lib/angular.min.js"></script>
+    <script src="../lib/angular-cookies.js"></script>
     <script src="../layui/layui.js"></script>
     <script src="../js/layui-userInfo.js"></script>
+    <script src="../js/angular-userInfo.js"></script>
 </head>
-<body>
+<body ng-app="userInfoPage" ng-controller="rootController">
     <header>
         <div class="layui-header">
             <div class="layui-main">
@@ -42,15 +44,16 @@
                 </ul>
                 <div class="layui-tab-content">
                     <!--个人信息-->
-                    <div class="layui-tab-item layui-show">
+                    <div class="layui-tab-item layui-show" ng-controller="infoController">
                         <div class="showInfo clearfix">
                             <div class="avatarBox">
-                                <img src="../images/avatar/123.jpg" alt="">
-                                <div class="updateAvatar">更换头像</div>
+                                <img src="../images/avatar/<%= result.avatar%>" alt="">
+                                <div class="updateAvatar"><label for="newAvatar">更换头像</label></div>
+                                <input type="file" name="newAvatar" value="" id="newAvatar">
                             </div>
                             <div class="infoBox">
-                                <h2 class="signer-name">人机小王子<i></i></h2>
-                                <p>注册于 <span>2016-12-5 10:22</span></p>
+                                <h2 class="signer-name"><%= result.username %><i></i></h2>
+                                <p>注册于 <span>{{<%= new Date(result.createTime).getTime() %> | date: 'yyyy-MM-dd HH:mm:ss'}}</span></p>
                                 <p>已提问<span>0</span>个问题&#x3000;已回答<span>0</span>个问题</p>
                             </div>
                         </div>
