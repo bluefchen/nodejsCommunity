@@ -38,21 +38,21 @@
     </header>
     <main>
         <div class="container shadow">
-            <div class="question-head">
+            <blockquote class="layui-elem-quote mainQuestion">
                 <div class="question-info">
                     <h2 data-qid="<%= q._id %>"><%= q.title %></h2>
+                    <p class="topics"><span><%= q.topic.description %></span></p>
                     <p><span><%= q.createTime %></span><span><%= q.answers.length %>个回答</span></p>
-                    <p><span><%= q.topic.description %></span></p>
                 </div>
                 <div class="owner-info">
-                    <a href="#"><img src="../images/avatar/<%= q.owner.avatar %>" alt="" class="avatar-z"></a>
+                    <a href="#"><img src="../images/avatar/<%= q.owner.avatar %>" alt="" class="avatar-m"></a>
                     <a href="#"><%= q.owner.username %></a>
                 </div>
-            </div>
-            <fieldset class="layui-elem-field question-body">
-                <legend>问题描述</legend>
-                <div class="layui-field-box"><%= q.description %></div>
-            </fieldset>
+                <fieldset class="layui-elem-field question-body">
+                    <legend>问题描述</legend>
+                    <div class="layui-field-box"><%= q.description %></div>
+                </fieldset>
+            </blockquote>
             <div class="answerList">
                 <fieldset class="layui-elem-field question-body">
                     <legend>回答列表</legend>

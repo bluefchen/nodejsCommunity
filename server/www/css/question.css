@@ -47,6 +47,7 @@ main {
 }
 main .container.shadow {
     min-height: 800px;
+    padding-top: 20px;
 }
 
 fieldset {
@@ -68,9 +69,9 @@ fieldset .layui-field-box {
 }
 
 
-.avatar-z {
-    width: 50px;
-    height: 50px;
+.avatar-m {
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
 }
 .avatar-s {
@@ -95,13 +96,15 @@ fieldset .layui-field-box {
 }
 
 
-.question-head, .question-body {
-    margin-bottom: 20px;
-}
 
+.mainQuestion {
+    padding-bottom: 3px;
+} 
 .question-info h2 {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 25px;
+    line-height: 30px;
+    color: #333;
+    margin-bottom: 10px;
 }
 .question-info p {
     font-size: 14px;
@@ -110,6 +113,18 @@ fieldset .layui-field-box {
 .question-info span {
     margin-right: 10px;
 }
+.question-info .topics span {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 8px;
+    margin-right: 10px;
+    background-color: #46B8DA;
+    color: #333;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
 
 .question-body .layui-field-box {
     font-size: 16px;
@@ -120,7 +135,7 @@ fieldset .layui-field-box {
 .answer-item .answer-content {
     font-size: 16px;
     color: #333;
-    border: 1px dashed #999;
+    /*border: 1px dashed #999;*/
     padding: 10px 0; 
     margin-bottom: 5px;
 }
@@ -135,9 +150,12 @@ fieldset .layui-field-box {
     line-height: 14px;
     color: #999;
 }
+.owner-info {
+    margin: 7px 0;
+}
 .owner-info a {
     font-size: 14px;
-    color: #999;
+    color: #666;
 }
 
 .answerList .owner-info {
