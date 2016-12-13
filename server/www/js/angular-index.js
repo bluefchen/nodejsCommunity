@@ -1,16 +1,41 @@
 angular
     .module('indexPage', ['ngCookies'])
-    .controller('rootController', ['$rootScope','$scope', '$cookies', function($rootScope,$scope,$cookies){
+    .controller('rootController', ['$rootScope','$scope', '$cookies', '$http', function($rootScope,$scope,$cookies,$http){
+        $http
+            .get('/question/count')
+            .then( (result)=>{
+                result = Number(result.data.result);
+                $rootScope.quesCount = result;
+                $rootScope.pageCount = Math.ceil(result/10)
+            } )
+            .catch( (err)=>{
+                console.log('请求发送失败')
+                console.log(err)
+            } )
+
+        // 分页功能
         layui.use(['layer', 'laypage'], function(){
             $rootScope.layer = layui.layer;
             $rootScope.laypage = layui.laypage;
             $rootScope.laypage({
                 cont: 'index-pageList',  //将要进行呈现分页效果的div的id
-                pages: 100, //总页数
-                groups: 7   //连续显示分页数
+                pages: $rootScope.pageCount, //总页数
+                groups: 7,   //连续显示分页数
+                jump: function(obj, first){  // 每页按钮被点击时触发
+                    // console.log(obj);  //当前页的对象 
+                    // console.log(first); //当前是不是第一页
+                    $http
+                        .get('/question/portion/'+obj.curr)
+                        .then( (result)=>{
+                            $rootScope.questions = result.data.result;
+                        } )
+                        .catch( (err)=>{
+                            console.log(err)
+                        } )
+                }
             });
         })
-        
+    
         // 获取cookies
         $rootScope.signerID = $cookies.get('signerID') ? $cookies.get('signerID').slice(3,-1) : undefined;
         $rootScope.signerAva = $cookies.get('signerAva') ? $cookies.get('signerAva') : undefined;
@@ -24,17 +49,18 @@ angular
         $scope.goLookUserInfo = function(){
             window.location.href = '/u/'+$rootScope.signerID;
         }
-    }])
-    .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+
+        // 获取所有话题信息
         $http
-            .get('/question/all')
-            .then( (result)=>{  
-                $scope.questions = result.data.result;
+            .get('/topic/all')
+            .then( (result)=>{
+                $rootScope.topics = result.data.result;
             } )
             .catch( (err)=>{
                 console.log(err)
             } )
-
+    }])
+    .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $scope.goLookQuestion = function(q_id){
             window.location.href = '/q/'+q_id
         }
@@ -150,15 +176,6 @@ angular
         }
     }])
     .controller('form-ask-controller', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
-        $http
-            .get('/topic/all')
-            .then( (result)=>{
-                console.log(result.data)
-                $scope.topics = result.data.result;
-            } )
-            .catch( (err)=>{
-                console.log(err)
-            } )
         $scope.askNow = function(){
             var loadMsg = $rootScope.layer.load(2);
             var data = angular.element('#form-ask form').serialize();

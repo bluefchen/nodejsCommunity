@@ -78,10 +78,7 @@
                 <div class="panel panel-default hotTopic">
                     <div class="panel-heading">热门话题</div>
                     <div class="panel-body">
-                        <span class="topic-item">javaScript</span>
-                        <span class="topic-item">node</span>
-                        <span class="topic-item">angular</span>
-                        <span class="topic-item">ionic</span>
+                        <span class="topic-item" ng-repeat="t in topics">{{t.description}}</span>
                     </div>
                 </div>
             </div>

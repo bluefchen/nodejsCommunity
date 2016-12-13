@@ -30,13 +30,30 @@ router.get('/q/:qid', (req, res)=>{
 
 
 
+// 获取问题的总数
+router.get('/question/count', (req, res)=>{
+    db.Question.Model
+        .count()
+        .exec()
+        .then( (result)=>{
+            res.json({flag: 1, msg: '获取问题总数成功', result: result})
+        } )
+        .catch( (err)=>{
+            res.json({flag: 0, msg: '获取问题总数时出错'})
+        } )
+})
 
 
 
-
-router.get('/question/all', (req, res)=>{
+// 分页功能
+// 通过updataTime排序
+router.get('/question/portion/:pageIndex', (req, res)=>{
+    var pageIndex = req.params.pageIndex;
     db.Question.Model
         .find()
+        .sort({updateTime: -1})
+        .skip((pageIndex-1)*10)
+        .limit(10)
         .populate({
             path: 'topic',
         })
@@ -56,6 +73,31 @@ router.get('/question/all', (req, res)=>{
 
 
 
+// 获取所有的问题
+router.get('/question/all', (req, res)=>{
+    db.Question.Model
+        .find()
+        .sort({updateTime: -1})
+        .populate({
+            path: 'topic',
+        })
+        .exec()
+        .then( (result)=>{
+            if(result.length == 0){
+                res.json({flag: 0, msg: '没有获取到问题数据'})
+            }else{
+                res.json({flag: 1, msg: '获取到'+result.length+'条问题数据', result: result})
+            }
+        } )
+        .catch( (err)=>{
+            console.log(err)
+            res.json({flag: 0, msg: '检索问题数据时发生了异常'})
+        } )
+})
+
+
+
+// 添加一条问题
 router.post('/question/add', (req, res)=>{
     db.Topic.Model
         .find({description: req.body.topic})
