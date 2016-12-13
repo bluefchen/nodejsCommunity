@@ -6,7 +6,7 @@ angular
             .then( (result)=>{
                 result = Number(result.data.result);
                 $rootScope.quesCount = result;
-                $rootScope.pageCount = Math.ceil(result/10)
+                $rootScope.pageCount = Math.ceil(result/10);
             } )
             .catch( (err)=>{
                 console.log('请求发送失败')
@@ -59,6 +59,20 @@ angular
             .catch( (err)=>{
                 console.log(err)
             } )
+        
+        // 通过话题的_id获取相应的问题
+        $rootScope.getQuestionByTopic = function(t){
+            var tid = t._id;
+            $http
+                .get('/questions/'+tid)
+                .then( (result)=>{
+                    $rootScope.questions = result.data.result;
+                    $('#index-pageList').hide();
+                } )
+                .catch( (err)=>{
+                    console.log(err)
+                } )
+        }
     }])
     .controller('questionsController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
         $scope.goLookQuestion = function(q_id){

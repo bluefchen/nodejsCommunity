@@ -7,8 +7,8 @@
     <link type="text/css" rel="stylesheet" href="layui/css/layui.css">
     <link type="text/css" rel="stylesheet" href="css/index.css">
     <script src="lib/jquery-3.1.0.min.js"></script>
-    <script src="lib/angular.js"></script>
-    <script src="lib/angular-cookies.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-cookies.min.js"></script>
     <script src="layui/layui.js"></script>
     <script src="js/angular-index.js"></script>
     <script src="js/layui-index.js"></script>
@@ -75,10 +75,11 @@
                     <button type="button" class="layui-btn">提问</button>
                 </div>
                 <!--热门话题-->
-                <div class="panel panel-default hotTopic">
+                <div class="panel panel-default hotTopic" >
                     <div class="panel-heading">热门话题</div>
                     <div class="panel-body">
-                        <span class="topic-item" ng-repeat="t in topics">{{t.description}}</span>
+                        <span class="topic-item"><a href="/">全部问题</a></span>
+                        <span class="topic-item" ng-repeat="t in topics" ng-click="getQuestionByTopic(t)">{{t.description}}</span>
                     </div>
                 </div>
             </div>

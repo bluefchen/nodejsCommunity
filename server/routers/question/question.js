@@ -30,6 +30,21 @@ router.get('/q/:qid', (req, res)=>{
 
 
 
+router.get('/questions/:tid', (req, res)=>{
+    var tid = req.params.tid;
+    db.Question.Model
+        .find({topic: tid})
+        .populate({path: 'topic'})
+        .then( (result)=>{
+            res.json({flag: 1, msg: '通过话题获取问题信息成功', result: result})
+        } )
+        .catch( (err)=>{
+            res.json({flag: 0, msg: '通过话题获取问题信息成功'})
+        } )
+})
+
+
+
 // 获取问题的总数
 router.get('/question/count', (req, res)=>{
     db.Question.Model
