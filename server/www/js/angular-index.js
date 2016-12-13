@@ -179,30 +179,36 @@ angular
         $scope.askNow = function(){
             var loadMsg = $rootScope.layer.load(2);
             var data = angular.element('#form-ask form').serialize();
-            var topic = $('#form-ask .topic-item.selected').text()
-            data = data+'&topic='+topic
-            console.log(data)
-            var config = {
-                method: 'post',
-				url: '/question/add',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				data: data
+            var topic = $('#form-ask .topic-item.selected');
+            if(topic.length == 0){
+                $rootScope.layer.close(loadMsg);
+                $rootScope.layer.msg('必须选一个话题哦~')
+            }else{
+                data = data+'&topic='+topic.text()
+                console.log(data)
+                var config = {
+                    method: 'post',
+                    url: '/question/add',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: data
+                }
+                $http(config)
+                    .then( function(result){
+                        $rootScope.layer.close(loadMsg);
+                        if(result.data.flag == 1){
+                            $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000}, function(){
+                                window.location.href = '/';
+                            })
+                        }else{
+                            $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000})
+                        }
+                    } )
+                    .catch( function(err){
+                        $rootScope.layer.close(loadMsg);
+                        $rootScope.layer.msg('发布失败，发生了个未知错误',{zIndex:20000, time: 1000})
+                        console.log(err)
+                    } )
             }
-            $http(config)
-                .then( function(result){
-                    $rootScope.layer.close(loadMsg);
-                    if(result.data.flag == 1){
-                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000}, function(){
-                            window.location.href = '/';
-                        })
-                    }else{
-                        $rootScope.layer.msg(result.data.msg, {zIndex:20000, time: 1000})
-                    }
-                } )
-                .catch( function(err){
-                    $rootScope.layer.close(loadMsg);
-                    $rootScope.layer.msg('发布失败，发生了个未知错误',{zIndex:20000, time: 1000})
-                    console.log(err)
-                } )
+
         }
     }])
