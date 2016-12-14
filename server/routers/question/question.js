@@ -16,16 +16,12 @@ router.get('/q/:qid', (req, res)=>{
         })
         .exec()
         .then((result)=>{
-            if(result.length == 0){
-                // TODO
-                // 这里将来要跳转到404页面
-                res.json({flag: 0, msg: '没有查询到该问题的内容'})
-            }else if(result.length == 1){
-                res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result[0]})
-            }else{
-                res.json({flag: 0, msg: '查询该问题的内容时发生异常'})
-            }
+            if(result.length != 1) console.log('查询id为'+qid+'的问题时返回'+result.length+'条数据')
+            res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result[0]})
         })
+        .catch( (err)=>{
+            res.status(404).render('404');
+        } )
 })
 
 

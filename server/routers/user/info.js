@@ -10,16 +10,12 @@ router.get('/u/:uid', (req, res)=>{
         .find({_id: uid})
         .exec()
         .then((result)=>{
-            if(result.length == 0){
-                // TODO
-                // 这里将来要跳转到404页面
-                res.json({flag: 0, msg: '没有查询到该用户的信息'})
-            }else if(result.length == 1){
-                res.render('./u/userInfo', {flag: 1, msg: '用户信息查询成功', result: result[0]})
-            }else{
-                res.json({flag: 0, msg: '查询该用户时发生异常'})
-            }
+            if(result.length != 1) console.log('查询id为'+uid+'的用户时返回'+result.length+'条数据')
+            res.render('./u/userInfo', {flag: 1, msg: '用户信息查询成功', result: result[0]})
         })
+        .catch( (err)=>{
+            res.status(404).render('404');
+        } )
 })
 
 
