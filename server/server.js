@@ -30,15 +30,7 @@ app.set('view engine', 'html');
 
 
 // 导入路由配置
-app.use( require('./routers/index') )
-app.use( require('./routers/user/info') );
-app.use( require('./routers/user/register') );
-app.use( require('./routers/user/login') );
-app.use( require('./routers/question/question') );
-app.use( require('./routers/answer/answer') );
-app.use( require('./routers/topic/topic') );
-app.use( require('./routers/404') );
-
+require( "./routers")(app);
 
 
 
