@@ -110,7 +110,10 @@
                 <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="!signerID">* 登录后才能提问哦~</div></div>
             </div>
             <div class="layui-form-item" style="text-align: center">
-                <button type="submit" ng-disabled="askForm.$invalid&&signerID" ng-click="askNow()"
+                <!--<div>禁用： {{askForm.$invalid || !signerID}}</div>-->
+                <!--<div>没有通过： {{askForm.$invalid}}</div>-->
+                <!--<div>没有登录： {{!signerID}}</div>-->
+                <button type="submit" ng-disabled="askForm.$invalid || !signerID" ng-click="askNow()"
                     class="layui-btn {{askForm.$dirty ? (askForm.$valid&&signerID ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}} ">发布</button>
             </div>
         </form>
