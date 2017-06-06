@@ -13,6 +13,7 @@ userAPI.login = function(req, res){
             if(result.length == 0){
                 res.json({flag: 0, msg: '用户名不存在'});
             }else if(result[0].password == req.body.password){
+                req.session.user = result[0];
                 res.cookie('signerID', result[0]._id);
                 res.cookie('signerAva', result[0].avatar);
                 res.json({flag: 1, msg: '登录成功'});

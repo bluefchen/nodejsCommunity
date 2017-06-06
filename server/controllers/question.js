@@ -35,7 +35,8 @@ questionAPI.getOneById = function(req, res){
         })
         .exec()
         .then((result)=>{
-            if(result.length != 1) console.log('查询id为'+qid+'的问题时返回'+result.length+'条数据')
+            if(result.length != 1) console.log('查询id为'+qid+'的问题时返回'+result.length+'条数据');
+            console.dir(result[0]);
             res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result[0]})
         })
         .catch( (err)=>{

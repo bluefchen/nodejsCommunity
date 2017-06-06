@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const questionAPI = require("../controllers/question");
+const auth = require("../middlewares/auth");
 
 
 // 获取一条问题的信息
@@ -18,7 +19,7 @@ router.get('/question/portion/:pageIndex', questionAPI.getByPageIndex);
 router.get('/question/all', questionAPI.getAll);
 
 // 添加一条问题
-router.post('/question/add', questionAPI.createOne);
+router.post('/question/add',auth.isLogin, questionAPI.createOne);
 
 
 module.exports = router;
