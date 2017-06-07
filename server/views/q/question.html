@@ -94,8 +94,8 @@
                             <!--<div class="clearfix"><div class="layui-form-mid layui-word-aux unPass">* 回答的内容太长了。。。</div></div>-->
                         </div>
                         <div class="layui-form-item">
-                            <button type="submit" ng-disabled="ans.$invalid"  ng-click="answerNow()"
-                                class="layui-btn {{ans.$dirty ? (ans.$valid ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">提交回答</button>
+                            <button type="submit" ng-disabled="ans.$invalid || !hasSigner"  ng-click="answerNow()"
+                                class="layui-btn {{ans.$dirty ? (ans.$valid && hasSigner ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}}">提交回答</button>
                         </div>
                     </form>
                 </div>

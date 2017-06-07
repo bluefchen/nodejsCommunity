@@ -46,7 +46,7 @@
         </div>
         <div class="jumbotron">
             <div class="container">
-                <h1>NodeJS 问答交流社区<small> 2.1</small></h1>
+                <h1>NodeJS 问答交流社区<small> 2.2</small></h1>
                 <p>嘿~小伙，欢迎来到这里，NodeJS 问答交流社区助你变大牛！</p>
             </div>
         </div>
@@ -107,10 +107,13 @@
                 <textarea name="description" placeholder="有什么不懂的只管说！" required ng-model="description" ng-maxlength="1024"
                     class="layui-textarea {{askForm.description.$dirty ? (askForm.description.$valid ? '' : 'unPass') : ''}}"></textarea>
                 <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="askForm.description.$dirty && askForm.description.$invalid">长度已经达到1024了！真的不能再多了</div></div>
-                <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="!signerID">* 登录后才能回答哦~</div></div>
+                <div class="clearfix"><div class="layui-form-mid layui-word-aux unPass" ng-if="!signerID">* 登录后才能提问哦~</div></div>
             </div>
             <div class="layui-form-item" style="text-align: center">
-                <button type="submit" ng-disabled="askForm.$invalid&&signerID" ng-click="askNow()"
+                <!--<div>禁用： {{askForm.$invalid || !signerID}}</div>-->
+                <!--<div>没有通过： {{askForm.$invalid}}</div>-->
+                <!--<div>没有登录： {{!signerID}}</div>-->
+                <button type="submit" ng-disabled="askForm.$invalid || !signerID" ng-click="askNow()"
                     class="layui-btn {{askForm.$dirty ? (askForm.$valid&&signerID ? 'layui-btn-normal' : 'layui-btn-disabled') : 'layui-btn-disabled'}} ">发布</button>
             </div>
         </form>

@@ -1,10 +1,8 @@
-const express = require('express');
-
-const router = express.Router();
-
-router.get('/', (req,res)=>{
-    res.render('index');
-})
-
-
-module.exports = router;
+module.exports = function(app){
+    app.use( require("./static") );
+    app.use( require("./question") );
+    app.use( require("./answer") );
+    app.use( require("./topic") );
+    app.use( require("./user") );
+    app.use( require("./userInfo") );
+};

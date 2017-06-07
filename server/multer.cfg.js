@@ -1,6 +1,6 @@
 
 const multer = require('multer');
-const encrypt = require('./extensions/encrypt')
+const encrypt = require('./utils/encrypt')
 
 const storage = multer.diskStorage({
 	destination: './www/images/avatar',
