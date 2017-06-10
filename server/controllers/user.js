@@ -1,28 +1,28 @@
 const db = require('../db/mongodb.cfg');
 const encrypt = require('../utils/encrypt');
+const bcrypt = require("bcryptjs");
 
 let userAPI = {}
 
 
 userAPI.login = function(req, res){
-    req.body.password = encrypt.useMD5(req.body.password);
+    // req.body.password = encrypt.useMD5(req.body.password);
     db.User.Model
-        .find({username: req.body.username})
+        .findOne({username: req.body.username})
         .exec()
         .then( (result)=>{
-            if(result.length == 0){
-                res.json({flag: 0, msg: '用户名不存在'});
-            }else if(result[0].password == req.body.password){
-                req.session.user = result[0];
-                res.cookie('signerID', result[0]._id);
-                res.cookie('signerAva', result[0].avatar);
+            result = result._doc;
+            if(bcrypt.compareSync(req.body.password+"", result.password)){
+                req.session.user = result;
+                res.cookie('signerID', result._id);
+                res.cookie('signerAva', result.avatar);
                 res.json({flag: 1, msg: '登录成功'});
             }else{
                 res.json({flag: 0, msg: '密码错误'});
             }
         } )
         .catch( (err)=>{
-            res.json({flag: 0, msg: '服务器验证出错'});
+            res.json({flag: 0, msg: '用户名不存在'});
         } )
 }
 
@@ -47,7 +47,8 @@ userAPI.checkName = function(req, res){
 userAPI.register = function(req, res){
     let user = new db.User.Model({
         username: req.body.username,
-        password: encrypt.useMD5(req.body.passwd),
+        // password: encrypt.useMD5(req.body.passwd),
+        password: bcrypt.hashSync(req.body.password+"", 1),
         email: req.body.email,
         gender: req.body.gender,
         createTime: new Date(),

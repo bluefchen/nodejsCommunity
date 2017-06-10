@@ -28,16 +28,20 @@ questionAPI.getAll = function(req, res){
 questionAPI.getOneById = function(req, res){
     let qid = req.params.qid;
     db.Question.Model
-        .find({_id: qid})
+        .findById(qid)
         .populate({
             path: 'owner answers topic',
-            populate: { path: 'owner' }  //级联查询answers下的owner
+            // populate: { path: 'owner' }  //级联查询answers下的owner
         })
-        .exec()
         .then((result)=>{
-            if(result.length != 1) console.log('查询id为'+qid+'的问题时返回'+result.length+'条数据');
-            console.dir(result[0]);
-            res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result[0]})
+            db.Answer.Model
+                .find({answerFor: qid})
+                .populate({path: "owner"})
+                .then((doc)=>{
+                    // console.dir(doc);
+                    result.answers = doc;
+                    res.render('./q/question', {flag: 1, msg: '问题内容查询成功', q: result})
+                })
         })
         .catch( (err)=>{
             res.status(404).render('404');
@@ -49,6 +53,7 @@ questionAPI.getTopic = function(req, res){
     let tid = req.params.tid;
     db.Question.Model
         .find({topic: tid})
+        .sort({updateTime: -1})
         .populate({path: 'topic'})
         .then( (result)=>{
             res.json({flag: 1, msg: '通过话题获取问题信息成功', result: result})
@@ -114,6 +119,8 @@ questionAPI.createOne = function(req, res){
         } )
 
     function saveQuestion(topic_id, req, res) {
+        req.body.description = req.body.description.replace(/</g, '&lt;');
+        req.body.description = req.body.description.replace(/>/g, '&gt;');
         let question = new db.Question.Model({
             owner: req.cookies.signerID,
             title: req.body.title,
